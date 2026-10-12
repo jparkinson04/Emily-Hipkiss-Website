@@ -129,6 +129,7 @@ const tabs = [
 
 <style>
   .tabs__bar { display: none; flex-wrap: wrap; gap: 10px; margin-bottom: var(--space-3); }
+  @media (max-width: 760px) { .tabs__bar { gap: 8px; margin-bottom: var(--space-2); } .tabs__bar button { padding: 10px 16px; min-height: 40px; font-size: 0.9375rem; } .tabs__cta { margin-top: var(--space-3); padding-top: var(--space-2); } .tabs__cta-text { font-size: 19px; } }
   :global(.js) .tabs__bar { display: flex; }
   .tabs__bar button {
     font: inherit; font-size: 1rem; font-weight: 600; color: var(--bark); background: transparent;
@@ -156,7 +157,7 @@ const tabs = [
   .band--sage .tabs__cta .btn:hover { background: var(--sage-tint); border-color: var(--sage-tint); }
 
   @media (max-width: 700px) {
-    .tabs__panel h2 { font-size: 28px; }
+    .tabs__panel h2 { font-size: 26px; margin-bottom: var(--space-2); }
     .tabs__cols { grid-template-columns: 1fr; gap: 0; }
     .tabs__cols > div + div { margin-top: 14px; }
   }

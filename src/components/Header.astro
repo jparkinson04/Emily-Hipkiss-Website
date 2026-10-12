@@ -74,19 +74,26 @@ const isCurrent = (href: string) => href === '/' ? current === '/' : current.sta
   :global([data-page="contact"]) .nav a[aria-current="page"] { border-bottom-color: var(--cream); }
   :global([data-page="contact"]) :focus-visible { outline-color: var(--cream); }
   @media (max-width: 900px) {
-    :global([data-page="contact"]) .site-header { right: 0; padding: 22px 24px; }
+    :global([data-page="contact"]) .site-header { right: 0; padding: 10px 24px; }
     :global([data-page="contact"]) .site-header__inner { width: 100%; align-items: center; }
+    /* Open menu on the Contact page: solid sage panel so the links sit cleanly over the hero */
+    :global([data-page="contact"]) .site-header:has(.menu-toggle[aria-expanded="true"]) { background: var(--sage-deep); border-bottom: 1px solid color-mix(in srgb, var(--cream) 35%, transparent); padding-bottom: 12px; }
+    :global([data-page="contact"]) .has-js .nav { padding-top: 8px; }
     :global([data-page="contact"]) .nav { justify-content: center; }
   }
 
   @media (max-width: 760px) {
-    .site-header__inner { padding-block: var(--space-2); }
+    .site-header__inner { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-1) var(--space-2); padding-block: 10px; }
+    .brand { gap: 0.6rem; }
+    .brand :global(svg) { width: 36px; height: 36px; }
+    .brand__name { font-size: 1.2rem; }
+    .brand__sub { font-size: 0.8125rem; }
     .nav { gap: var(--space-1) var(--space-3); }
 
     .has-js .menu-toggle {
       display: inline-block; font: inherit; font-size: 1rem; font-weight: 600; color: var(--bark);
       background: transparent; border: 1px solid var(--bark-soft); border-radius: var(--radius-pill);
-      padding: 0.5em 1.25em; cursor: pointer;
+      padding: 0.4em 1.1em; cursor: pointer;
     }
     .has-js .menu-toggle:hover, .has-js .menu-toggle[aria-expanded="true"] { background: var(--sage-tint); }
     :global([data-page="contact"]) .has-js .menu-toggle { color: var(--cream); border-color: var(--cream); }

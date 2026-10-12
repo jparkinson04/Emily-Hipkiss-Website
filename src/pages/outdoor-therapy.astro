@@ -123,8 +123,17 @@ const description = 'Walk & Talk outdoor therapy with Emily Hipkiss, BACP regist
   .wt-cta__text a:hover { color: var(--sage-tint); }
 
   @media (max-width: 760px) {
-    .wt-hero { padding: 40px 0 32px; }
-    .wt-hero__row { justify-content: center; }
+    .wt-hero { margin: 0.75rem 0.75rem 0; padding: 28px 0 44px; }
+    .wt-hero__row { justify-content: center; gap: 16px; }
+    .wt-hero__badge { width: 150px; }
+    .wt-hero__badge img { width: 116px; }
+    .wt-hero__text { text-align: center; }
+    .wt-hero__lede { font-size: 1.125rem; }
+    .wt-body { padding: 0.75rem 0 32px; }
+    .wt-quote { font-size: 19px; }
+    .wt-why__poll :global(.ticks__intro h2) { font-size: 22px; }
+    .wt-why__poll :global(.tick) { font-size: 17px; min-height: 48px; padding: 10px 14px; }
+    .wt-cta { padding-block: var(--space-4); }
     .band h2 { font-size: 28px; }
     .wt-why__grid { grid-template-columns: 1fr; gap: 32px; }
     .wt-kit__icons { flex-basis: 100%; justify-content: center; gap: 32px; }

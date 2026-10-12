@@ -57,9 +57,12 @@ const sageSlide = { forwards: slide, backwards: slide };
   .contact-right { flex: 1 1 520px; min-width: 0; padding: 150px 72px 72px; display: flex; align-items: center; }
 
   @media (max-width: 900px) {
-    .contact-left { padding: 176px 24px 48px; } /* header is ~150px tall on small screens */
+    .contact { min-height: 0; }
+    .contact-left { padding: 104px 24px 40px; gap: 36px; } /* header is ~70px tall on phones */
+    .contact-left p { font-size: 1.125rem; }
+    .contact-left__details { gap: 16px; padding-top: 20px; }
     .contact-left h1 { font-size: 48px; }
     .contact-left__details { grid-template-columns: 1fr; }
-    .contact-right { padding: 48px 24px; }
+    .contact-right { padding: 36px 24px 40px; }
   }
 </style>

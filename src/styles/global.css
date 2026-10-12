@@ -93,10 +93,10 @@ img { max-width: 100%; height: auto; display: block; border-radius: var(--radius
 .band--sage h2, .band--sage h3, .band--sage p, .band--sage li { color: var(--cream); }
 .band--sage :focus-visible { outline-color: var(--cream); }
 .band > .container { position: relative; z-index: 1; }
-@media (max-width: 760px) { .band { padding-block: 32px; } }
+@media (max-width: 760px) { .band { padding-block: 28px; margin-inline: 0.75rem; } .band + .band { margin-top: 0.75rem; } }
 .section--sage h2, .section--sage h3, .section--sage p, .section--sage a { color: var(--cream); }
 .section--sage :focus-visible { outline-color: var(--cream); }
-@media (max-width: 760px) { .section { padding-block: var(--space-4); } }
+@media (max-width: 760px) { .section { padding-block: 2rem; } .section--sage, .section--stone { margin-inline: 0.75rem; } }
 .section--stone { background: var(--stone-light); }
 
 .eyebrow {
