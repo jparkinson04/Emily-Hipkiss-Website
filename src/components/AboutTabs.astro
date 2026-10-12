@@ -1,0 +1,142 @@
+---
+/* Tabbed sections for the About page. Without JS all three panels show stacked, in order. */
+const tabs = [
+  { id: 'experience', label: 'My experience' },
+  { id: 'neurodivergent', label: 'Supporting neurodivergent clients' },
+  { id: 'expect', label: 'What can you expect?' },
+];
+---
+<div class="tabs">
+  <div class="tabs__bar" role="tablist" aria-label="About Emily">
+    {tabs.map((t, i) => (
+      <button type="button" role="tab" id={`tab-${t.id}`} aria-controls={t.id} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.label}</button>
+    ))}
+  </div>
+
+  <section class="tabs__panel tabs__panel--stone" role="tabpanel" id="experience" aria-labelledby="tab-experience">
+    <h2>My experience and areas of interest</h2>
+    <div class="tabs__cols">
+      <div>
+        <p>Having worked across a range of settings, I have experience of supporting clients with a wide range of challenges. I've worked in educational and community settings, domestic abuse services, and bereavement support settings across Yorkshire. These experiences have taught me the importance of looking beyond symptoms, understanding the individual person, their life experiences, and the wider circumstances and systems affecting their wellbeing.</p>
+      </div>
+      <div>
+        <p>Today, I work with adults in my private practice. People often come to therapy with me for support with anxiety, low mood, trauma, stress, grief and loss, relationship difficulties, chronic illness and disability, and other significant life changes that can affect our sense of identity and wellbeing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tabs__panel tabs__panel--sage" role="tabpanel" id="neurodivergent" aria-labelledby="tab-neurodivergent">
+    <h2>Supporting neurodivergent clients</h2>
+    <div class="tabs__cols">
+      <div>
+        <p>This is an area of work I am hugely passionate about. I support many clients with ADHD, autism, and other neurodevelopmental conditions by drawing on professional experience, training, and lived experience.</p>
+        <p>I understand that life's challenges can sometimes prompt us to wonder whether we're neurodivergent later in life. I specialise in supporting adults who are trying to understand themselves after years of feeling a bit different.</p>
+        <p>It can be life-changing to get to know yourself and your needs, rather than trying to squeeze yourself into a way of living that doesn't fit. Together, we can explore how your brain works, what you need to feel supported, and what might make life more manageable for you. In therapy, this often looks like:</p>
+      </div>
+      <div>
+        <ul class="tabs__list">
+          <li>Making sense of past experiences through a neurodivergent lens</li>
+          <li>Exploring how ADHD and/or autism affects you as an individual</li>
+          <li>Developing self-compassion and self-care</li>
+          <li>Finding practical structures and strategies that help you manage your life</li>
+          <li>Recognising and recovering from neurodivergent burnout</li>
+          <li>How can you work <em>with</em> your brain rather than against it</li>
+        </ul>
+        <p>There is no one-size-fits-all approach to working with neurodivergence. I will always take your specific needs, preferences, and circumstances into account during our work together.</p>
+        <p>I recognise that our experiences with neurodiversity and how we access support are impacted by intersections with factors such as race, gender, sexuality, disability and other socioeconomic circumstances. I aim to always approach our work with curiosity, and an awareness of the systems we navigate.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tabs__panel tabs__panel--stone" role="tabpanel" id="expect" aria-labelledby="tab-expect">
+    <h2>What can you expect from therapy with me?</h2>
+    <div class="tabs__cols">
+      <div>
+        <p>Starting therapy can feel like a big step. You might be nervous about what to say or where to start. You might feel unsure whether your difficulties are significant enough to bring to therapy, or worried about being judged. I want to reassure you that you don't need to have it all figured out before we begin.</p>
+        <p>Our first session is an opportunity for us to get to know each other and talk about what has brought you to therapy. We'll also discuss how we might work together, and whether there is anything that could make sessions more accessible or comfortable for you. You don't need to arrive with a clear agenda or goal for therapy – we can work at your pace to explore this together.</p>
+        <p>You can expect a non-judgemental space where your emotions are taken seriously and your individuality is respected. You can tell me when something isn't working for you, ask questions about the process, or let me know if you'd like us to approach something in a different way.</p>
+      </div>
+      <div>
+        <p>Therapy needs to fit into your life. I can offer in-person or online sessions, weekly or fortnightly. I'm always happy to discuss adjustments to the way we work.</p>
+        <p>I believe good therapy is about more than simply being listened to. It's about two humans working together, bringing your self-knowledge and my professional experience into the space.</p>
+        <p>You don't need to feel like you're performing or doing therapy 'right' – there's room for difficult things, messy things, celebrating wins, and humour when it feels right. My hope is that our work together helps you to understand yourself with greater compassion, feel more confident in meeting your needs, and find ways of living that feel authentic to you.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script is:inline>
+  (() => {
+    document.documentElement.classList.add('js');
+    const root = document.querySelector('.tabs');
+    const tabs = [...root.querySelectorAll('[role="tab"]')];
+    const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+
+    const activate = (index, focus) => {
+      tabs.forEach((t, i) => {
+        const on = i === index;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        panels[i].hidden = !on;
+      });
+      if (focus) tabs[index].focus();
+    };
+
+    const fromHash = () => {
+      const i = panels.findIndex(p => '#' + p.id === location.hash);
+      activate(i >= 0 ? i : 0, false);
+    };
+
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => activate(i, false));
+      t.addEventListener('keydown', (e) => {
+        const n = tabs.length;
+        let next = null;
+        if (e.key === 'ArrowRight') next = (i + 1) % n;
+        else if (e.key === 'ArrowLeft') next = (i - 1 + n) % n;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = n - 1;
+        if (next !== null) { e.preventDefault(); activate(next, true); }
+      });
+    });
+
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+  })();
+</script>
+
+<style>
+  .tabs__bar { display: none; flex-wrap: wrap; gap: 10px; margin-bottom: var(--space-3); }
+  :global(.js) .tabs__bar { display: flex; }
+  .tabs__bar button {
+    font: inherit; font-size: 1rem; font-weight: 600; color: var(--bark); background: transparent;
+    border: 1.5px solid var(--hairline-strong); border-radius: var(--radius-pill);
+    padding: 14px 22px; min-height: 44px; cursor: pointer; transition: border-color .2s, background .2s, color .2s;
+  }
+  .tabs__bar button:hover { border-color: var(--sage-deep); }
+  .tabs__bar button[aria-selected="true"] { background: var(--bark-soft); border-color: var(--bark-soft); color: var(--cream); }
+
+  .tabs__panel { border-radius: var(--radius-md); padding: 40px 44px; }
+  .tabs__panel + .tabs__panel { margin-top: var(--space-3); }
+  :global(.js) .tabs__panel[hidden] { display: none; }
+  .tabs__panel--stone { background: var(--stone-light); }
+  .tabs__panel--sage { background: var(--sage-deep); color: var(--cream); }
+  .tabs__panel--sage h2, .tabs__panel--sage p, .tabs__panel--sage li { color: var(--cream); }
+  .tabs__panel--sage :focus-visible { outline-color: var(--cream); }
+  .tabs__panel h2 { font-size: 34px; margin-bottom: var(--space-3); }
+  .tabs__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  .tabs__cols p { margin: 0 0 14px; max-width: none; }
+  .tabs__cols p:last-child { margin-bottom: 0; }
+
+  .tabs__list { list-style: none; margin: 0 0 14px; padding: 0; }
+  .tabs__list li { position: relative; padding-left: 26px; }
+  .tabs__list li + li { margin-top: 8px; }
+  .tabs__list li::before { content: ''; position: absolute; left: 0; top: 0.45em; width: 14px; height: 14px; border-radius: 50%; background: var(--sage); }
+
+  @media (max-width: 700px) {
+    .tabs__panel { padding: 28px 24px; }
+    .tabs__panel h2 { font-size: 28px; }
+    .tabs__cols { grid-template-columns: 1fr; gap: 0; }
+    .tabs__cols > div + div { margin-top: 14px; }
+  }
+</style>

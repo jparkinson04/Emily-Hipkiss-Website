@@ -14,6 +14,9 @@
   --bark-soft: #5e4230;   /* logo, rules, secondary text */
   --muted: #6f655d;
   --hairline: color-mix(in srgb, var(--bark) 8%, transparent);   /* header and footer rules */
+  --hairline-mid: color-mix(in srgb, var(--bark) 12%, transparent); /* section rules, tab borders */
+  --hairline-strong: color-mix(in srgb, var(--bark) 18%, transparent); /* pill tab borders */
+  --radius-md: 10px;                        /* About tab panels and cards */
   --sage-tint: color-mix(in srgb, var(--sage) 28%, var(--cream)); /* soft image placeholders */
 
   --font-heading: 'Playfair Display Variable', Georgia, 'Times New Roman', serif;

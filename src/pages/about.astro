@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import AboutTabs from '../components/AboutTabs.astro';
 import Credentials from '../components/Credentials.astro';
 import Therapies from '../components/Therapies.astro';
 import Fees from '../components/Fees.astro';
@@ -7,82 +8,86 @@ import Fees from '../components/Fees.astro';
 const description = 'Emily Hipkiss is an integrative counsellor and psychotherapist in Pontefract offering a warm, collaborative, relational approach, with a specialism in supporting neurodivergent adults.';
 ---
 <Base title="About" description={description}>
-  <section class="section">
-    <div class="container about-hero">
-      <div class="placeholder-img about-hero__photo">Portrait photo</div>
-      <div class="prose">
-        <p class="eyebrow">About</p>
-        <h1>Therapy that meets you where you are</h1>
-        <p class="lede">You deserve a space where you can feel heard, understood, and accepted just as you are.</p>
-        <p>I'm Emily, an integrative counsellor and psychotherapist. I offer a warm and collaborative approach to therapy, helping you make sense of your experiences, develop a deeper understanding of yourself, and find ways forward that work for you.</p>
-        <p>My approach to therapy is relational, which means that the working relationship we build is at the heart of our work together. Therapy works best when you feel safe enough to be open, honest, and explore at your own pace.</p>
-        <p>I pride myself on developing an accessible and inclusive practice where you can be exactly who you are without fear of judgment.</p>
+  <div class="about">
+
+    <section class="about-hero">
+      <div class="container about-hero__row">
+        <div class="about-hero__photo" role="img" aria-label="Portrait of Emily Hipkiss (photograph to come)"><span aria-hidden="true">Portrait photo</span></div>
+        <div class="about-hero__text">
+          <h1>Therapy that meets you where you are</h1>
+          <p class="about-hero__lede">You deserve a space where you can feel heard, understood, and accepted just as you are.</p>
+          <p>I'm Emily, an integrative counsellor and psychotherapist. I offer a warm and collaborative approach to therapy, helping you make sense of your experiences, develop a deeper understanding of yourself, and find ways forward that work for you.</p>
+          <p>My approach to therapy is relational, which means that the working relationship we build is at the heart of our work together. Therapy works best when you feel safe enough to be open, honest, and explore at your own pace.</p>
+          <p>I pride myself on developing an accessible and inclusive practice where you can be exactly who you are without fear of judgment.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section--tight">
-    <div class="container"><div class="prose">
-      <h2>My experience and areas of interest</h2>
-      <p>Having worked across a range of settings, I have experience of supporting clients with a wide range of challenges. I've worked in educational and community settings, domestic abuse services, and bereavement support settings across Yorkshire. These experiences have taught me the importance of looking beyond symptoms, understanding the individual person, their life experiences, and the wider circumstances and systems affecting their wellbeing.</p>
-      <p>Today, I work with adults in my private practice. People often come to therapy with me for support with anxiety, low mood, trauma, stress, grief and loss, relationship difficulties, chronic illness and disability, and other significant life changes that can affect our sense of identity and wellbeing.</p>
-    </div></div>
-  </section>
-
-  <section class="section section--sage" id="neurodivergent">
-    <div class="container"><div class="prose">
-      <h2>Supporting neurodivergent clients</h2>
-      <p>This is an area of work I am hugely passionate about. I support many clients with ADHD, autism, and other neurodevelopmental conditions by drawing on professional experience, training, and lived experience.</p>
-      <p>I understand that life's challenges can sometimes prompt us to wonder whether we're neurodivergent later in life. I specialise in supporting adults who are trying to understand themselves after years of feeling a bit different.</p>
-      <p>It can be life-changing to get to know yourself and your needs, rather than trying to squeeze yourself into a way of living that doesn't fit. Together, we can explore how your brain works, what you need to feel supported, and what might make life more manageable for you. In therapy, this often looks like:</p>
-      <ul>
-        <li>Making sense of past experiences through a neurodivergent lens</li>
-        <li>Exploring how ADHD and/or autism affects you as an individual</li>
-        <li>Developing self-compassion and self-care</li>
-        <li>Finding practical structures and strategies that help you manage your life</li>
-        <li>Recognising and recovering from neurodivergent burnout</li>
-        <li>How can you work <em>with</em> your brain rather than against it</li>
-      </ul>
-      <p>There is no one-size-fits-all approach to working with neurodivergence. I will always take your specific needs, preferences, and circumstances into account during our work together.</p>
-      <p>I recognise that our experiences with neurodiversity and how we access support are impacted by intersections with factors such as race, gender, sexuality, disability and other socioeconomic circumstances. I aim to always approach our work with curiosity, and an awareness of the systems we navigate.</p>
-    </div></div>
-  </section>
-
-  <section class="section">
-    <div class="container"><div class="prose">
-      <h2>What can you expect from therapy with me?</h2>
-      <p>Starting therapy can feel like a big step. You might be nervous about what to say or where to start. You might feel unsure whether your difficulties are significant enough to bring to therapy, or worried about being judged. I want to reassure you that you don't need to have it all figured out before we begin.</p>
-      <p>Our first session is an opportunity for us to get to know each other and talk about what has brought you to therapy. We'll also discuss how we might work together, and whether there is anything that could make sessions more accessible or comfortable for you. You don't need to arrive with a clear agenda or goal for therapy – we can work at your pace to explore this together.</p>
-      <p>You can expect a non-judgemental space where your emotions are taken seriously and your individuality is respected. You can tell me when something isn't working for you, ask questions about the process, or let me know if you'd like us to approach something in a different way.</p>
-      <p>Therapy needs to fit into your life. I can offer in-person or online sessions, weekly or fortnightly. I'm always happy to discuss adjustments to the way we work.</p>
-      <p>I believe good therapy is about more than simply being listened to. It's about two humans working together, bringing your self-knowledge and my professional experience into the space.</p>
-      <p>You don't need to feel like you're performing or doing therapy 'right' – there's room for difficult things, messy things, celebrating wins, and humour when it feels right. My hope is that our work together helps you to understand yourself with greater compassion, feel more confident in meeting your needs, and find ways of living that feel authentic to you.</p>
-      <p class="about-closing"><em>If you'd like to find out more about working together, please get in touch.</em></p>
-      <a class="btn" href="/contact">Get in touch</a>
-    </div></div>
-  </section>
-
-  <section class="section section--stone">
-    <div class="container">
-      <div class="grid grid--2 about-lower">
-        <Credentials />
-        <Fees />
+    <section class="about-tabs">
+      <div class="container">
+        <AboutTabs />
+        <div class="about-cta">
+          <p class="about-cta__text"><em>If you'd like to find out more about working together, please get in touch.</em></p>
+          <a class="btn" href="/contact">Get in touch</a>
+        </div>
       </div>
-      <div class="about-therapies">
-        <Therapies />
+    </section>
+
+    <section class="facts">
+      <div class="container">
+        <h2 class="facts__title">The practical details</h2>
+        <div class="facts__grid">
+          <div class="facts__card facts__card--creds"><Credentials /></div>
+          <div class="facts__card facts__card--fees"><Fees /></div>
+          <div class="facts__card facts__card--ways">
+            <Therapies />
+            <a class="btn facts__cta" href="/contact">Get in touch</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </div>
 </Base>
 
 <style>
-  .about-hero { display: grid; gap: var(--space-4); align-items: start; }
-  @media (min-width: 761px) { .about-hero { grid-template-columns: 2fr 3fr; gap: var(--space-5); } }
-  .about-hero__photo { max-width: 24rem; }
-  .about-hero .prose { max-width: var(--measure); }
-  .prose ul { max-width: var(--measure); padding-left: 1.2em; margin: 0 0 var(--space-2); }
-  .prose li { margin-bottom: 0.4em; }
-  .about-closing { font-family: var(--font-heading); font-size: 1.375rem; margin-top: var(--space-3); }
-  .about-lower { gap: var(--space-5); }
-  .about-therapies { margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--sage); }
+  /* 17px body on this page only, to suit the two-column measure */
+  .about { font-size: 17px; }
+  .about p { max-width: none; }
+
+  .about-hero { padding: 56px 0 44px; }
+  .about-hero__row { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
+  .about-hero__photo { flex: none; width: 260px; aspect-ratio: 1 / 1; border-radius: 50%; background: var(--stone); display: grid; place-items: center; color: var(--bark-soft); font-size: 0.9375rem; }
+  .about-hero__text { flex: 999 1 560px; min-width: 0; max-width: 40rem; }
+  .about-hero__lede { font-size: 21px; line-height: 1.5; color: var(--bark-soft); margin-bottom: var(--space-3); }
+  .about-hero__text p:not(.about-hero__lede) { margin: 0 0 14px; }
+  .about-hero__text p:last-child { margin-bottom: 0; }
+
+  .about-tabs { padding-bottom: 48px; }
+  .about-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: var(--space-4); }
+  .about-cta__text { font-family: var(--font-heading); font-size: 22px; margin: 0; }
+
+  .facts { border-top: 1px solid var(--hairline-mid); padding: 56px 0 64px; }
+  .facts__title { font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: var(--space-3); }
+  .facts__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); align-items: stretch; }
+  .facts__card { background: var(--stone-light); border: 1px solid var(--sage); border-radius: var(--radius); padding: 28px 28px 32px; }
+  .facts__card :global(h2) { font-size: 1.375rem; margin-bottom: var(--space-2); padding-bottom: var(--space-2); border-bottom: 1px solid var(--sage); }
+  .facts :global(ul) { list-style: none; padding: 0; margin: 0; }
+  .facts :global(li) { position: relative; font-size: 1rem; line-height: 1.45; padding: 0 0 0 22px; margin: 0; }
+  .facts :global(li + li) { margin-top: 10px; }
+  .facts :global(li)::before { content: ''; position: absolute; left: 2px; top: 0.5em; width: 9px; height: 9px; border-radius: 50%; background: var(--sage); }
+  .facts :global(li a) { color: var(--bark); text-decoration-color: var(--sage-deep); }
+  .facts :global(li a:hover) { color: var(--sage-deep); }
+  .facts :global(.credentials__bacp) { margin-top: 24px; }
+  .facts :global(.credentials__bacp span) { font-size: 0.9375rem; line-height: 1.4; }
+  .facts :global(.fees__call) { background: var(--cream); font-size: 1rem; padding: 14px 16px; margin-bottom: var(--space-2); }
+  .facts__cta { margin-top: 24px; }
+
+  @media (max-width: 900px) {
+    .facts__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .about-hero { padding: 40px 0 32px; }
+    .about-hero__row { justify-content: center; }
+  }
 </style>
