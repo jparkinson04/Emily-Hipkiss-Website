@@ -22,10 +22,10 @@ const sageSlide = { forwards: slide, backwards: slide };
         <p class="contact-left__text rise rise--1">Whether you'd like to enquire about sessions or simply have a question, you're welcome to get in touch. Send a message here, or email or call, and I'll reply on one of my working days.</p>
         <h2 class="contact-more__title">Or reach me directly</h2>
         <dl class="contact-left__details rise rise--2">
-          <div><dt>Email</dt><dd><a href="mailto:emilyhipkisscounselling@outlook.com">emilyhipkisscounselling@outlook.com</a></dd></div>
-          <div><dt>Phone</dt><dd><a href="tel:+447712163270">07712 163270</a></dd></div>
-          <div><dt>Working days</dt><dd>Monday to Thursday</dd></div>
-          <div><dt>Sessions</dt><dd>In person in Pontefract, by video or phone, or <a class="contact-left__link" href="/outdoor-therapy">Walk &amp; Talk</a></dd></div>
+          <div><dt><svg class="contact-left__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3.5 7 8.5 6.5L20.5 7" /></svg><span>Email</span></dt><dd><a href="mailto:emilyhipkisscounselling@outlook.com">emilyhipkisscounselling@outlook.com</a></dd></div>
+          <div><dt><svg class="contact-left__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2Z" /></svg><span>Phone</span></dt><dd><a href="tel:+447712163270">07712 163270</a></dd></div>
+          <div><dt><svg class="contact-left__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" /><path d="M3.5 10h17M8 3v4M16 3v4" /></svg><span>Working days</span></dt><dd>Monday to Thursday</dd></div>
+          <div><dt><svg class="contact-left__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11Z" /><circle cx="12" cy="10" r="2.5" /></svg><span>Sessions</span></dt><dd>In person in Pontefract, by video or phone, or <a class="contact-left__link" href="/outdoor-therapy">Walk &amp; Talk</a></dd></div>
         </dl>
         <p class="contact-more__next">We'll start with a free 20-minute consultation call by phone or video.</p>
       </div>
@@ -56,6 +56,7 @@ const sageSlide = { forwards: slide, backwards: slide };
     padding-top: 28px; border-top: 1px solid color-mix(in srgb, var(--cream) 30%, transparent);
   }
   .contact-left__details dt { font-size: 0.9375rem; opacity: .8; margin-bottom: 4px; }
+  .contact-left__icon { display: none; }
   .contact-left__details dd { margin: 0; overflow-wrap: anywhere; }
   .contact-left__details a { color: var(--cream); text-decoration: none; }
   .contact-left__details a:hover { text-decoration: underline; }
@@ -78,7 +79,9 @@ const sageSlide = { forwards: slide, backwards: slide };
     .contact-left__details { display: block; margin: 0; padding: 0; border: 0; }
     .contact-left__details div { display: block; min-height: 48px; padding: 9px 0; border-top: 1px solid var(--hairline-mid); }
     .contact-left__details div:first-child { border-top: 0; }
-    .contact-left__details dt { font-size: 0.75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sage-deep); opacity: 1; margin: 0 0 2px; }
+    .contact-left__details dt { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sage-deep); opacity: 1; margin: 0 0 2px; }
+    .contact-left__icon { display: block; flex: none; width: 1.125rem; height: 1.125rem; fill: none; stroke: var(--sage-deep); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-left__details dd { padding-left: calc(1.125rem + 8px); }
     .contact-left__details dd { font-size: 1rem; }
     .contact-left__details a { color: var(--bark); }
     .contact-left__details .contact-left__link { text-decoration-color: var(--sage-deep); }
