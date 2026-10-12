@@ -74,11 +74,14 @@ const isCurrent = (href: string) => href === '/' ? current === '/' : current.sta
   :global([data-page="contact"]) .nav a[aria-current="page"] { border-bottom-color: var(--cream); }
   :global([data-page="contact"]) :focus-visible { outline-color: var(--cream); }
   @media (max-width: 900px) {
-    :global([data-page="contact"]) .site-header { right: 0; padding: 10px 24px; }
-    :global([data-page="contact"]) .site-header__inner { width: 100%; align-items: center; }
-    /* Open menu on the Contact page: solid sage panel so the links sit cleanly over the hero */
-    :global([data-page="contact"]) .site-header:has(.menu-toggle[aria-expanded="true"]) { background: var(--sage-deep); border-bottom: 1px solid color-mix(in srgb, var(--cream) 35%, transparent); padding-bottom: 12px; }
-    :global([data-page="contact"]) .has-js .nav { padding-top: 8px; }
+    /* Contact on small screens: stacked, centred, full nav visible and wrapping (no Menu button) */
+    :global([data-page="contact"]) .site-header { right: 0; padding: 14px 16px 0; }
+    :global([data-page="contact"]) .site-header__inner { width: 100%; flex-direction: column; align-items: center; gap: 8px; }
+    :global([data-page="contact"]) .menu-toggle, :global([data-page="contact"]) .has-js .menu-toggle { display: none; }
+    :global([data-page="contact"]) .has-js .menu-toggle[aria-expanded="false"] + nav { display: block; }
+    :global([data-page="contact"]) .has-js .nav { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 2px 18px; padding: 0; }
+    :global([data-page="contact"]) .has-js .nav li + li { border-top: 0; }
+    :global([data-page="contact"]) .has-js .nav a { padding-block: 0.3rem; }
     :global([data-page="contact"]) .nav { justify-content: center; }
   }
 

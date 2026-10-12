@@ -45,5 +45,6 @@ const year = new Date().getFullYear();
     .site-footer__name { font-size: 1.125rem; margin-bottom: 0.25rem; }
     .site-footer__badge { width: 7rem; margin-top: 0.5rem; }
     .site-footer__contact { gap: 0.4rem; }
+    :global([data-page="contact"]) .site-footer__badge, :global([data-page="contact"]) .site-footer__contact li:last-child { display: none; }
   }
 </style>
