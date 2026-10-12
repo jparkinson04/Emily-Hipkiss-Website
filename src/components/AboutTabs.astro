@@ -1,4 +1,5 @@
 ---
+import Hills from './Hills.astro';
 /* Tabbed sections for the About page. Without JS all three panels show stacked, in order. */
 const tabs = [
   { id: 'experience', label: 'My experience' },
@@ -7,13 +8,16 @@ const tabs = [
 ];
 ---
 <div class="tabs">
+  <div class="container">
   <div class="tabs__bar" role="tablist" aria-label="About Emily">
     {tabs.map((t, i) => (
       <button type="button" role="tab" id={`tab-${t.id}`} aria-controls={t.id} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.label}</button>
     ))}
   </div>
+  </div>
 
-  <section class="tabs__panel tabs__panel--stone" role="tabpanel" id="experience" aria-labelledby="tab-experience">
+  <section class="tabs__panel band band--stone" role="tabpanel" id="experience" aria-labelledby="tab-experience">
+    <div class="container">
     <h2>My experience and areas of interest</h2>
     <div class="tabs__cols">
       <div>
@@ -23,9 +27,16 @@ const tabs = [
         <p>Today, I work with adults in my private practice. People often come to therapy with me for support with anxiety, low mood, trauma, stress, grief and loss, relationship difficulties, chronic illness and disability, and other significant life changes that can affect our sense of identity and wellbeing.</p>
       </div>
     </div>
+      <div class="tabs__cta">
+        <p class="tabs__cta-text"><em>If you'd like to find out more about working together, please get in touch.</em></p>
+        <a class="btn" href="/contact">Get in touch</a>
+      </div>
+    </div>
   </section>
 
-  <section class="tabs__panel tabs__panel--sage" role="tabpanel" id="neurodivergent" aria-labelledby="tab-neurodivergent">
+  <section class="tabs__panel band band--sage" role="tabpanel" id="neurodivergent" aria-labelledby="tab-neurodivergent">
+    <Hills tone="cream" soft />
+    <div class="container">
     <h2>Supporting neurodivergent clients</h2>
     <div class="tabs__cols">
       <div>
@@ -46,9 +57,15 @@ const tabs = [
         <p>I recognise that our experiences with neurodiversity and how we access support are impacted by intersections with factors such as race, gender, sexuality, disability and other socioeconomic circumstances. I aim to always approach our work with curiosity, and an awareness of the systems we navigate.</p>
       </div>
     </div>
+      <div class="tabs__cta">
+        <p class="tabs__cta-text"><em>If you'd like to find out more about working together, please get in touch.</em></p>
+        <a class="btn" href="/contact">Get in touch</a>
+      </div>
+    </div>
   </section>
 
-  <section class="tabs__panel tabs__panel--stone" role="tabpanel" id="expect" aria-labelledby="tab-expect">
+  <section class="tabs__panel band band--stone" role="tabpanel" id="expect" aria-labelledby="tab-expect">
+    <div class="container">
     <h2>What can you expect from therapy with me?</h2>
     <div class="tabs__cols">
       <div>
@@ -62,10 +79,15 @@ const tabs = [
         <p>You don't need to feel like you're performing or doing therapy 'right' – there's room for difficult things, messy things, celebrating wins, and humour when it feels right. My hope is that our work together helps you to understand yourself with greater compassion, feel more confident in meeting your needs, and find ways of living that feel authentic to you.</p>
       </div>
     </div>
+      <div class="tabs__cta">
+        <p class="tabs__cta-text"><em>If you'd like to find out more about working together, please get in touch.</em></p>
+        <a class="btn" href="/contact">Get in touch</a>
+      </div>
+    </div>
   </section>
 </div>
 
-<script is:inline>
+<script is:inline data-astro-rerun>
   (() => {
     document.documentElement.classList.add('js');
     const root = document.querySelector('.tabs');
@@ -116,13 +138,7 @@ const tabs = [
   .tabs__bar button:hover { border-color: var(--sage-deep); }
   .tabs__bar button[aria-selected="true"] { background: var(--bark-soft); border-color: var(--bark-soft); color: var(--cream); }
 
-  .tabs__panel { border-radius: var(--radius-md); padding: 40px 44px; }
-  .tabs__panel + .tabs__panel { margin-top: var(--space-3); }
   :global(.js) .tabs__panel[hidden] { display: none; }
-  .tabs__panel--stone { background: var(--stone-light); }
-  .tabs__panel--sage { background: var(--sage-deep); color: var(--cream); }
-  .tabs__panel--sage h2, .tabs__panel--sage p, .tabs__panel--sage li { color: var(--cream); }
-  .tabs__panel--sage :focus-visible { outline-color: var(--cream); }
   .tabs__panel h2 { font-size: 34px; margin-bottom: var(--space-3); }
   .tabs__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
   .tabs__cols p { margin: 0 0 14px; max-width: none; }
@@ -133,8 +149,13 @@ const tabs = [
   .tabs__list li + li { margin-top: 8px; }
   .tabs__list li::before { content: ''; position: absolute; left: 0; top: 0.45em; width: 14px; height: 14px; border-radius: 50%; background: var(--sage); }
 
+  .tabs__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--hairline-mid); }
+  .tabs__cta-text { font-family: var(--font-heading); font-size: 22px; margin: 0; max-width: none; }
+  .band--sage .tabs__cta { border-top-color: color-mix(in srgb, var(--cream) 30%, transparent); }
+  .band--sage .tabs__cta .btn { background: var(--cream); border-color: var(--cream); color: var(--bark); }
+  .band--sage .tabs__cta .btn:hover { background: var(--sage-tint); border-color: var(--sage-tint); }
+
   @media (max-width: 700px) {
-    .tabs__panel { padding: 28px 24px; }
     .tabs__panel h2 { font-size: 28px; }
     .tabs__cols { grid-template-columns: 1fr; gap: 0; }
     .tabs__cols > div + div { margin-top: 14px; }

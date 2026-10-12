@@ -1,50 +1,65 @@
 ---
 import Base from '../layouts/Base.astro';
 import ContactForm from '../components/ContactForm.astro';
+import Hills from '../components/Hills.astro';
 const description = 'Contact Emily Hipkiss, BACP registered counsellor in Pontefract, to enquire about sessions or book a free 20-minute consultation call. In-person, video, telephone and Walk & Talk.';
+
+// Sage panel slides in from the left on the way in, and back out on the way out
+const slide = {
+  old: { name: 'sageOut', duration: '0.5s', easing: 'cubic-bezier(.7,0,.2,1)', fillMode: 'forwards' },
+  new: { name: 'sageIn',  duration: '0.7s', easing: 'cubic-bezier(.7,0,.2,1)', fillMode: 'backwards' },
+};
+const sageSlide = { forwards: slide, backwards: slide };
 ---
-<Base title="Contact" description={description}>
-  <section class="section contact">
-    <div class="container contact__grid">
-      <div class="contact__intro">
-        <h1>Get in touch, <em>whenever you're ready</em></h1>
-        <p class="lede">Whether you'd like to enquire about sessions or simply have a question, you're welcome to get in touch. Send a message here, or email or call, and I'll reply on one of my working days.</p>
-        <p class="contact__note">If enquiring about booking a consultation call, please include your availability and preferred method (phone/video).</p>
-        <dl class="contact__details">
-          <div><dt><svg class="contact__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3.5 7 8.5 6.5L20.500 7" /></svg>Email</dt><dd><a href="mailto:emilyhipkisscounselling@outlook.com">emilyhipkisscounselling@outlook.com</a></dd></div>
-          <div><dt><svg class="contact__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.500 3.500h3l1.500 4-2 1.500a11 11 0 0 0 6 6l1.500-2 4 1.500v3a2 2 0 0 1-2 2A16 16 0 0 1 4.500 5.500a2 2 0 0 1 2-2Z" /></svg>Phone</dt><dd><a href="tel:+447712163270">07712 163270</a></dd></div>
-          <div><dt><svg class="contact__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.500" y="5" width="17" height="15" rx="2" /><path d="M3.500 10h17M8 3v4M16 3v4" /></svg>Working days</dt><dd>Monday to Thursday</dd></div>
-          <div><dt><svg class="contact__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>Sessions</dt><dd>In-person sessions in Pontefract, plus video, telephone and <a href="/outdoor-therapy">Walk &amp; Talk</a></dd></div>
-        </dl>
-        <div class="contact__next">
-          <h2>What happens next</h2>
-          <p>We'll start with a free 20-minute consultation call by phone or video. It's a chance to ask questions, tell me a little about what's brought you here, and get a feel for how I work, with no pressure to book anything further.</p>
-        </div>
+<Base title="Contact" description={description} page="contact">
+  <div class="contact">
+    <section class="contact-left" transition:name="sage" transition:animate={sageSlide}>
+      <Hills tone="cream" soft />
+      <div class="contact-left__intro rise rise--1">
+        <h1>Whenever you're ready.</h1>
+        <p>Whether you'd like to enquire about sessions or simply have a question, you're welcome to get in touch. Send a message here, or email or call, and I'll reply on one of my working days.</p>
       </div>
+      <dl class="contact-left__details rise rise--2">
+        <div><dt>Email</dt><dd><a href="mailto:emilyhipkisscounselling@outlook.com">emilyhipkisscounselling@outlook.com</a></dd></div>
+        <div><dt>Phone</dt><dd><a href="tel:+447712163270">07712 163270</a></dd></div>
+        <div><dt>Working days</dt><dd>Monday to Thursday</dd></div>
+        <div><dt>Sessions</dt><dd>In person in Pontefract, by video or phone, or <a class="contact-left__link" href="/outdoor-therapy">Walk &amp; Talk</a></dd></div>
+      </dl>
+    </section>
+    <section class="contact-right rise rise--3" aria-label="Contact form">
       <ContactForm />
-    </div>
-  </section>
+    </section>
+  </div>
 </Base>
 
 <style>
-  /* Fill the space above the footer and centre the content in it */
-  .contact { padding-block: var(--space-4); flex: 1; display: grid; align-items: center; }
-  .contact__grid { display: grid; gap: var(--space-4); align-items: center; }
-  @media (min-width: 900px) {
-    .contact__grid { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+  .contact { display: flex; flex-wrap: wrap; min-height: 100vh; flex: 1; }
+
+  .contact-left {
+    position: relative; overflow: hidden;
+    flex: 1 1 520px; min-width: 0; background: var(--sage-deep); color: var(--cream);
+    padding: 150px 56px 56px; display: flex; flex-direction: column; justify-content: space-between; gap: 64px;
   }
-  .contact h1 { font-size: clamp(2rem, 4vw, 3rem); }
-  .contact .lede { font-size: 1.1875rem; margin-bottom: var(--space-2); }
-  .contact__note { font-size: 1rem; color: var(--bark-soft); border-left: 3px solid var(--sage); padding-left: var(--space-2); margin: 0; }
-  .contact__details { margin: var(--space-3) 0 0; padding-top: var(--space-3); border-top: 1px solid var(--sage); display: grid; gap: var(--space-1); max-width: var(--measure); }
-  .contact__details div { display: grid; grid-template-columns: 10rem 1fr; gap: var(--space-2); align-items: start; }
-  .contact__details dt { font-size: 0.8125rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage-deep); display: flex; align-items: center; gap: 0.75rem; padding-top: 0.2em; }
-  .contact__icon { width: 1.375rem; height: 1.375rem; flex: none; fill: none; stroke: var(--sage-deep); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .contact__details dd { margin: 0; font-size: 1rem; overflow-wrap: anywhere; }
-  .contact__next { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--sage); }
-  .contact__next h2 { font-size: 1.375rem; margin-bottom: var(--space-1); }
-  .contact__next p { font-size: 1rem; margin: 0; }
-  @media (max-width: 480px) {
-    .contact__details div { grid-template-columns: 1fr; gap: 0; }
+  .contact-left > :not(.hills) { position: relative; z-index: 1; }
+  .contact-left h1 { color: var(--cream); font-size: clamp(48px, 6vw, 84px); line-height: 1.05; margin-bottom: var(--space-3); }
+  .contact-left p { color: var(--cream); font-size: 20px; line-height: 1.5; max-width: 560px; margin: 0; }
+  .contact-left__details {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 40px; margin: 0;
+    padding-top: 28px; border-top: 1px solid color-mix(in srgb, var(--cream) 30%, transparent);
+  }
+  .contact-left__details dt { font-size: 0.9375rem; opacity: .8; margin-bottom: 4px; }
+  .contact-left__details dd { margin: 0; overflow-wrap: anywhere; }
+  .contact-left__details a { color: var(--cream); text-decoration: none; }
+  .contact-left__details a:hover { text-decoration: underline; }
+  .contact-left__details .contact-left__link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .contact-left :focus-visible { outline-color: var(--cream); }
+
+  .contact-right { flex: 1 1 520px; min-width: 0; padding: 150px 72px 72px; display: flex; align-items: center; }
+
+  @media (max-width: 900px) {
+    .contact-left { padding: 176px 24px 48px; } /* header is ~150px tall on small screens */
+    .contact-left h1 { font-size: 48px; }
+    .contact-left__details { grid-template-columns: 1fr; }
+    .contact-right { padding: 48px 24px; }
   }
 </style>

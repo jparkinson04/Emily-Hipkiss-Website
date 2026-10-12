@@ -1,0 +1,26 @@
+---
+/* Card in the same family as the blog cards: sage top with the title, stone body, dark sage line between. */
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<article class="detail">
+  <div class="detail__top"><h3>{title}</h3></div>
+  <div class="detail__body"><slot /></div>
+</article>
+
+<style>
+  .detail { display: grid; grid-template-rows: auto 1fr; background: var(--sage-tint); border-radius: var(--radius); overflow: hidden; }
+  /* In a .detail-grid row, share the parent's rows so every card's title band and divider line up */
+  :global(.detail-grid) > .detail { grid-template-rows: subgrid; grid-row: span 2; row-gap: 0; }
+  .detail__top { display: flex; align-items: flex-start; min-height: 150px; padding: 36px 32px; background: var(--sage); border-bottom: 3px solid var(--sage-deep); }
+  .detail__top h3 { font-size: 30px; line-height: 1.15; color: var(--cream); margin: 0; }
+  .detail__body { flex: 1; display: flex; flex-direction: column; gap: 18px; padding: 26px 32px 30px; }
+
+  /* Body lists: dot bullets, no hairlines */
+  .detail__body :global(ul) { list-style: none; margin: 0; padding: 0; }
+  .detail__body :global(li) { position: relative; padding: 4px 0 4px 18px; font-size: 15px; line-height: 1.5; }
+  .detail__body :global(li)::before { content: ''; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: var(--sage-deep); }
+  .detail__body :global(li a) { color: var(--bark); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, var(--bark) 35%, transparent); }
+  .detail__body :global(li a:hover) { text-decoration-color: var(--bark); }
+  .detail__body :global(.detail__foot) { margin: auto 0 0; }
+</style>

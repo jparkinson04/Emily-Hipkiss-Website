@@ -1,58 +1,132 @@
 ---
 import Base from '../layouts/Base.astro';
+import TickList from '../components/TickList.astro';
+import Hills from '../components/Hills.astro';
 const description = 'Walk & Talk outdoor therapy with Emily Hipkiss, BACP registered counsellor in Pontefract. Therapy in nature, at your pace, with a free 20-minute consultation call.';
 ---
 <Base title="Walk & Talk" description={description}>
-  <section class="section wt-hero">
-    <div class="container wt-hero__grid">
-      <div>
-        <h1>Walk &amp; Talk</h1>
-        <p class="lede">Walk &amp; Talk brings therapy to the great outdoors.</p>
+  <div class="wt">
+
+    <!-- Hero: same as the About hero. When Emily's outdoor photo arrives, add
+         <img class="wt-hero__photo" src="/images/walk-and-talk.jpg" alt="" /> as the first child of .wt-hero
+         and remove <Hills />. -->
+    <section class="wt-hero">
+      <Hills tone="sage" soft />
+      <div class="container wt-hero__row">
+        <div class="wt-hero__badge">
+          <img src="/images/walk-and-talk-trained-badge.png" alt="Walk & Talk Therapy Trained" width="500" height="500" />
+        </div>
+        <div class="wt-hero__text">
+          <h1>Walk &amp; Talk</h1>
+          <p class="wt-hero__lede">Walk &amp; Talk brings therapy to the great outdoors.</p>
+        </div>
       </div>
-      <img class="wt-hero__badge" src="/images/walk-and-talk-trained-badge.png" alt="Walk & Talk Therapy Trained" width="500" height="500" />
-    </div>
-  </section>
+    </section>
 
-  <section class="section--tight">
-    <div class="container">
-      <div class="placeholder-img placeholder-img--wide">Outdoor photo (Emily is taking one)</div>
-    </div>
-  </section>
+    <section class="wt-body">
 
-  <section class="section">
-    <div class="container"><div class="prose">
-      <p>We know from years of scientific research that spending time outdoors supports both our mental and physical health. Whether this is boosting our mood, supporting nervous system regulation, or simply getting our steps in, getting out in nature can offer us so much. One study by Professor Roger Ulrich even demonstrated that patients recovered more quickly from an operation if they had a view of nature, highlighting the healing properties of nature.</p>
-      <p>Nature's therapeutic presence can support our work together by creating a sense of calm, engaging our senses, and facilitating feelings of connection with the world around us.</p>
+        <div class="band band--stone wt-why">
+          <div class="container wt-why__grid">
+            <div class="wt-why__text">
+              <h2>Why outdoors?</h2>
+              <p>We know from years of scientific research that spending time outdoors supports both our mental and physical health. Whether this is boosting our mood, supporting nervous system regulation, or simply getting our steps in, getting out in nature can offer us so much. One study by Professor Roger Ulrich even demonstrated that patients recovered more quickly from an operation if they had a view of nature, highlighting the healing properties of nature.</p>
+              <p class="wt-quote">Nature's therapeutic presence can support our work together by creating a sense of calm, engaging our senses, and facilitating feelings of connection with the world around us.</p>
+            </div>
+            <div class="wt-why__poll">
+              <TickList />
+            </div>
+          </div>
+        </div>
 
-      <h2>Walk &amp; Talk therapy may be for you if…</h2>
-      <ul class="wt-list">
-        <li>You love getting outside</li>
-        <li>You want a break from screens</li>
-        <li>You're feeling isolated or disconnected</li>
-        <li>You want to be more active</li>
-        <li>You find it easier to speak freely side-by-side</li>
-      </ul>
+        <div class="band band--stone">
+          <div class="container">
+          <h2>What you'll need</h2>
+          <div class="wt-kit">
+            <p class="wt-kit__text">You do not have to be a seasoned hiker to engage in Walk &amp; Talk. We will always agree on a safe route, go at your pace, and make time to rest on a bench or stop and smell the flowers. All you'll need are some comfortable shoes, weather-appropriate clothing, a water bottle, and we're good to go.</p>
+            <ul class="wt-kit__icons">
+              <li>
+                <svg viewBox="0 0 48 48" role="img" aria-label="Comfortable shoes"><path d="M6 31c0-3 3-4 7-4l5-6c2 2 5 3 8 3l12 5c3 1 5 3 5 6H6Z" /><path d="M6 35h37M18 21l2-4M23 24l2-4" /></svg>
+                <span>Comfortable shoes</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 48 48" role="img" aria-label="Right clothing"><path d="M18 8h12l3 4 8 4-4 8-4-2v18H15V22l-4 2-4-8 8-4 3-4Z" /><path d="M18 8c0 4 2 6 6 6s6-2 6-6M24 14v26" /></svg>
+                <span>Right clothing</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 48 48" role="img" aria-label="Water bottle"><path d="M20 6h8v6l4 6v20a4 4 0 0 1-4 4h-8a4 4 0 0 1-4-4V18l4-6V6Z" /><path d="M16 26h16M16 34h16" /></svg>
+                <span>Water bottle</span>
+              </li>
+            </ul>
+          </div>
+          </div>
+        </div>
 
-      <p>You do not have to be a seasoned hiker to engage in Walk &amp; Talk. We will always agree on a safe route, go at your pace, and make time to rest on a bench or stop and smell the flowers. All you'll need are some comfortable shoes, weather-appropriate clothing, a water bottle, and we're good to go.</p>
-      <p>If you are interested in Walk &amp; Talk therapy, please use my <a href="/contact">contact form</a> to get in touch. We will have an initial assessment session online or in office before we head outside.</p>
-    </div></div>
-  </section>
+        <div class="band band--sage wt-cta">
+          <Hills tone="cream" soft />
+          <div class="container wt-cta__inner">
+            <p class="wt-cta__text">If you are interested in Walk &amp; Talk therapy, please use my <a href="/contact">contact form</a> to get in touch. We will have an initial assessment session online or in office before we head outside.</p>
+            <a class="btn btn--cream" href="/contact">Get in touch</a>
+          </div>
+        </div>
 
-  <section class="section section--sage">
-    <div class="container wt-cta">
-      <h2>Interested in Walk &amp; Talk?</h2>
-      <a class="btn btn--cream" href="/contact">Get in touch</a>
-    </div>
-  </section>
+    </section>
+
+  </div>
 </Base>
 
 <style>
-  .wt-hero__grid { display: grid; gap: var(--space-3); align-items: center; }
-  @media (min-width: 640px) { .wt-hero__grid { grid-template-columns: 1fr auto; gap: var(--space-5); } }
-  .wt-hero__badge { width: 9rem; border-radius: 50%; }
-  .wt-hero .lede { margin-bottom: 0; }
-  .wt-list { max-width: var(--measure); padding-left: 1.2em; margin: 0 0 var(--space-3); }
-  .wt-list li { margin-bottom: 0.4em; }
-  .wt-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
-  .wt-cta h2 { margin: 0; }
+  /* Same body size and panel rhythm as the About page */
+  .wt { font-size: 17px; }
+  .wt p { max-width: none; }
+
+  /* Hero: mirrors .about-hero exactly */
+  .wt-hero { position: relative; overflow: hidden; margin: var(--space-2) var(--space-2) 0; border-radius: var(--radius-lg); padding: 56px 0 72px; background: linear-gradient(var(--cream), var(--sage-tint)); }
+  .wt-hero__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+  .wt-hero__photo ~ .wt-hero__row::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--cream) 0%, transparent 60%); z-index: -1; }
+  .wt-hero__row { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
+  .wt-hero__badge { flex: none; width: 260px; aspect-ratio: 1 / 1; border-radius: 50%; background: var(--stone); display: grid; place-items: center; }
+  .wt-hero__badge img { width: 200px; height: auto; border-radius: 50%; }
+  .wt-hero__text { flex: 999 1 560px; min-width: 0; max-width: 40rem; }
+  .wt-hero__lede { font-size: 21px; line-height: 1.5; color: var(--bark-soft); margin: 0; }
+
+  /* Stacked panels, as on About */
+  .wt-body { padding: var(--space-4) 0 48px; }
+  .band h2 { font-size: 34px; margin-bottom: var(--space-3); }
+  /* Why outdoors + the tick list, side by side in one band */
+  .wt-why__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
+  .wt-why__text p { margin: 0 0 14px; }
+  .wt-why__text p:last-child { margin-bottom: 0; }
+  .wt-quote { font-family: var(--font-heading); font-size: 22px; line-height: 1.4; color: var(--bark-soft); }
+  .wt-why__poll :global(.ticks) { flex-direction: column; gap: 16px; }
+  .wt-why__poll :global(.ticks__intro) { flex: none; }
+  .wt-why__poll :global(.ticks__intro h2) { font-size: 26px; margin-bottom: 6px; }
+  .wt-why__poll :global(.ticks__hint) { font-size: 15px; }
+  .wt-why__poll :global(.ticks__list) { flex: none; gap: 10px; }
+  .wt-why__poll :global(.tick) { background: var(--cream); font-size: 20px; min-height: 54px; padding: 12px 18px; gap: 14px; }
+  .wt-why__poll :global(.tick__circle) { width: 26px; height: 26px; }
+  .wt-why__poll :global(.tick__circle svg) { width: 15px; height: 15px; }
+  .wt-why__poll :global(.tick[aria-pressed="true"]) { background: var(--bark-soft); }
+  .wt-why__poll :global(.ticks__reply p) { font-size: 19px; }
+
+  .wt-kit { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
+  .wt-kit__text { flex: 999 1 480px; max-width: 620px; margin: 0; }
+  .wt-kit__icons { flex: 0 1 300px; list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-between; gap: 16px; }
+  /* --bark-soft rather than --muted: muted is only 4.46:1 on stone-light */
+  .wt-kit__icons li { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; font-size: 14px; color: var(--bark-soft); }
+  .wt-kit__icons svg { width: 40px; height: 40px; fill: none; stroke: var(--sage-deep); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Closing band, same as the home page invitation */
+  .wt-cta { padding-block: var(--space-5); }
+  .wt-cta__inner { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); text-align: center; }
+  .wt .wt-cta__text { font-family: var(--font-heading); font-size: clamp(1.375rem, 2.6vw, 1.75rem); line-height: 1.35; max-width: 34ch; margin: 0; text-wrap: balance; }
+  .wt-cta__text a { color: var(--cream); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .wt-cta__text a:hover { color: var(--sage-tint); }
+
+  @media (max-width: 760px) {
+    .wt-hero { padding: 40px 0 32px; }
+    .wt-hero__row { justify-content: center; }
+    .band h2 { font-size: 28px; }
+    .wt-why__grid { grid-template-columns: 1fr; gap: 32px; }
+    .wt-kit__icons { flex-basis: 100%; justify-content: center; gap: 32px; }
+  }
 </style>

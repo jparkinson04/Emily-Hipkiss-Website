@@ -10,6 +10,7 @@
   --stone-light: #e8e4d6;
   --sage: #9aa88f;
   --sage-deep: #5f7360;
+  --sage-light: #c9cfbd;  /* far hills on the Walk & Talk hero */
   --bark: #4e3524;        /* headings and body text; a clear warm brown, never black */
   --bark-soft: #5e4230;   /* logo, rules, secondary text */
   --muted: #6f655d;
@@ -82,7 +83,17 @@ img { max-width: 100%; height: auto; display: block; border-radius: var(--radius
 /* Cream text needs --sage-deep behind it; --sage is too light (2.2:1). */
 .section--sage { background: var(--sage-deep); color: var(--cream); margin-block: var(--space-2); }
 /* Coloured bands sit slightly inset with soft corners so the page flows rather than stacking boxes */
-.section--sage, .section--stone { margin-inline: var(--space-2); border-radius: var(--radius-lg); }
+.section--sage, .section--stone { margin-inline: var(--space-2); border-radius: var(--radius-lg); position: relative; overflow: hidden; }
+.section--sage > .container, .section--stone > .container { position: relative; z-index: 1; }
+/* Stacked content bands (About, Walk & Talk): full width like the home sections, text on the container grid */
+.band { position: relative; overflow: hidden; margin-inline: var(--space-2); border-radius: var(--radius-lg); padding-block: 48px; }
+.band + .band { margin-top: var(--space-2); }
+.band--stone { background: var(--stone-light); }
+.band--sage { background: var(--sage-deep); color: var(--cream); }
+.band--sage h2, .band--sage h3, .band--sage p, .band--sage li { color: var(--cream); }
+.band--sage :focus-visible { outline-color: var(--cream); }
+.band > .container { position: relative; z-index: 1; }
+@media (max-width: 760px) { .band { padding-block: 32px; } }
 .section--sage h2, .section--sage h3, .section--sage p, .section--sage a { color: var(--cream); }
 .section--sage :focus-visible { outline-color: var(--cream); }
 @media (max-width: 760px) { .section { padding-block: var(--space-4); } }
@@ -121,6 +132,18 @@ img { max-width: 100%; height: auto; display: block; border-radius: var(--radius
   display: grid; place-items: center; color: var(--bark-soft); font-size: 0.9rem; text-align: center; padding: var(--space-2);
 }
 .placeholder-img--wide { aspect-ratio: 16 / 9; }
+
+/* Contact page motion: sage panel slide (view transition) and content rise. Nothing animates under reduced motion. */
+.rise { animation-fill-mode: both; }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes sageIn  { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+  @keyframes sageOut { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .rise { animation: rise 0.6s cubic-bezier(.2,.7,.2,1) both; }
+  .rise--1 { animation-delay: 450ms; }
+  .rise--2 { animation-delay: 600ms; }
+  .rise--3 { animation-delay: 750ms; }
+}
 
 .prose { max-width: var(--measure); }
 .prose h2 { margin-top: var(--space-4); }

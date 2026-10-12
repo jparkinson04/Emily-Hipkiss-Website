@@ -1,9 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import AboutTabs from '../components/AboutTabs.astro';
-import Credentials from '../components/Credentials.astro';
-import Therapies from '../components/Therapies.astro';
-import Fees from '../components/Fees.astro';
+import Hills from '../components/Hills.astro';
+import DetailCard from '../components/DetailCard.astro';
 // placeholder copy (built from Emily's About wording; confirm with her)
 const description = 'Emily Hipkiss is an integrative counsellor and psychotherapist in Pontefract offering a warm, collaborative, relational approach, with a specialism in supporting neurodivergent adults.';
 ---
@@ -11,6 +10,7 @@ const description = 'Emily Hipkiss is an integrative counsellor and psychotherap
   <div class="about">
 
     <section class="about-hero">
+      <Hills tone="sage" soft />
       <div class="container about-hero__row">
         <div class="about-hero__photo" role="img" aria-label="Portrait of Emily Hipkiss (photograph to come)"><span aria-hidden="true">Portrait photo</span></div>
         <div class="about-hero__text">
@@ -24,25 +24,50 @@ const description = 'Emily Hipkiss is an integrative counsellor and psychotherap
     </section>
 
     <section class="about-tabs">
-      <div class="container">
-        <AboutTabs />
-        <div class="about-cta">
-          <p class="about-cta__text"><em>If you'd like to find out more about working together, please get in touch.</em></p>
-          <a class="btn" href="/contact">Get in touch</a>
-        </div>
-      </div>
+      <AboutTabs />
     </section>
 
     <section class="facts">
       <div class="container">
         <h2 class="facts__title">The practical details</h2>
-        <div class="facts__grid">
-          <div class="facts__card facts__card--creds"><Credentials /></div>
-          <div class="facts__card facts__card--fees"><Fees /></div>
-          <div class="facts__card facts__card--ways">
-            <Therapies />
-            <a class="btn facts__cta" href="/contact">Get in touch</a>
-          </div>
+        <div class="facts__grid detail-grid">
+
+          <DetailCard title="Qualifications & Training">
+            <ul>
+              <li>MA Integrative Counselling (Level 7)</li>
+              <li>BSc Psychology</li>
+              <li>Walk &amp; Talk therapy</li>
+              <li>Training in working with traumatic bereavement</li>
+              <li>Training in working with ADHD and autism</li>
+              <li>Training in building anti-racist practice</li>
+              <li>Commitment to ongoing professional development</li>
+            </ul>
+            <p class="detail__foot facts__bacp">
+              <a href="https://www.bacp.co.uk" rel="noopener"><img src="/images/bacp-registered-member-407026.png" alt="BACP Registered Member 407026" width="820" height="366" loading="lazy" /></a>
+              <span>Registered member (MBACP) working towards accreditation. Registration number 407026.</span>
+            </p>
+          </DetailCard>
+
+          <DetailCard title="Sessions and fees">
+            <ul>
+              <li>£60 per session</li>
+              <li>Block of 6 weekly sessions for £300</li>
+              <li>Limited concession slots for those on lower incomes</li>
+              <li>I understand that therapy is an investment and can therefore accommodate fortnightly sessions to spread the cost</li>
+              <li><strong>Free 20-minute consultation call via phone or video</strong></li>
+            </ul>
+          </DetailCard>
+
+          <DetailCard title="How we can work together">
+            <ul>
+              <li>In-person sessions in Pontefract</li>
+              <li>Video &amp; telephone</li>
+              <li><a href="/outdoor-therapy">Walk &amp; Talk outdoor therapy</a></li>
+              <li>Working days: Monday to Thursday</li>
+            </ul>
+            <p class="detail__foot"><a class="btn" href="/contact">Get in touch</a></p>
+          </DetailCard>
+
         </div>
       </div>
     </section>
@@ -55,7 +80,8 @@ const description = 'Emily Hipkiss is an integrative counsellor and psychotherap
   .about { font-size: 17px; }
   .about p { max-width: none; }
 
-  .about-hero { padding: 56px 0 44px; }
+  .about-hero { position: relative; overflow: hidden; margin: var(--space-2) var(--space-2) 0; border-radius: var(--radius-lg); padding: 56px 0 72px; background: linear-gradient(var(--cream), var(--sage-tint)); }
+  .about-hero__row { position: relative; z-index: 1; }
   .about-hero__row { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
   .about-hero__photo { flex: none; width: 260px; aspect-ratio: 1 / 1; border-radius: 50%; background: var(--stone); display: grid; place-items: center; color: var(--bark-soft); font-size: 0.9375rem; }
   .about-hero__text { flex: 999 1 560px; min-width: 0; max-width: 40rem; }
@@ -63,28 +89,19 @@ const description = 'Emily Hipkiss is an integrative counsellor and psychotherap
   .about-hero__text p:not(.about-hero__lede) { margin: 0 0 14px; }
   .about-hero__text p:last-child { margin-bottom: 0; }
 
-  .about-tabs { padding-bottom: 48px; }
-  .about-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: var(--space-4); }
-  .about-cta__text { font-family: var(--font-heading); font-size: 22px; margin: 0; }
+  .about-tabs { padding: var(--space-4) 0 48px; }
 
-  .facts { border-top: 1px solid var(--hairline-mid); padding: 56px 0 64px; }
-  .facts__title { font-size: clamp(1.75rem, 3vw, 2.25rem); margin-bottom: var(--space-3); }
-  .facts__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); align-items: stretch; }
-  .facts__card { background: var(--stone-light); border: 1px solid var(--sage); border-radius: var(--radius); padding: 28px 28px 32px; }
-  .facts__card :global(h2) { font-size: 1.375rem; margin-bottom: var(--space-2); padding-bottom: var(--space-2); border-bottom: 1px solid var(--sage); }
-  .facts :global(ul) { list-style: none; padding: 0; margin: 0; }
-  .facts :global(li) { position: relative; font-size: 1rem; line-height: 1.45; padding: 0 0 0 22px; margin: 0; }
-  .facts :global(li + li) { margin-top: 10px; }
-  .facts :global(li)::before { content: ''; position: absolute; left: 2px; top: 0.5em; width: 9px; height: 9px; border-radius: 50%; background: var(--sage); }
-  .facts :global(li a) { color: var(--bark); text-decoration-color: var(--sage-deep); }
-  .facts :global(li a:hover) { color: var(--sage-deep); }
-  .facts :global(.credentials__bacp) { margin-top: 24px; }
-  .facts :global(.credentials__bacp span) { font-size: 0.9375rem; line-height: 1.4; }
-  .facts :global(.fees__call) { background: var(--cream); font-size: 1rem; padding: 14px 16px; margin-bottom: var(--space-2); }
-  .facts__cta { margin-top: 24px; }
+  .facts { padding: 56px 0 64px; }
+  .facts__title { font-size: 40px; margin-bottom: 28px; }
+  .facts__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto 1fr; gap: 28px; align-items: stretch; }
+  .facts__bacp { display: flex; align-items: center; gap: 14px; margin: 0; }
+  .facts__bacp a { flex: none; display: block; width: 88px; line-height: 0; }
+  .facts__bacp img { width: 100%; height: auto; border-radius: 0; }
+  .facts__bacp span { font-size: 13px; line-height: 1.4; color: var(--muted); }
+  .facts :global(.detail__foot .btn) { font-size: 1rem; }
 
   @media (max-width: 900px) {
-    .facts__grid { grid-template-columns: 1fr; }
+    .facts__grid { grid-template-columns: 1fr; gap: 20px; }
   }
   @media (max-width: 700px) {
     .about-hero { padding: 40px 0 32px; }

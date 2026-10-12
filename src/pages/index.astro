@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import PostCard from '../components/PostCard.astro';
 import Monogram from '../components/Monogram.astro';
+import Hills from '../components/Hills.astro';
+import DetailCard from '../components/DetailCard.astro';
 import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog', p => !p.data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 2);
 const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract specialising in ADHD and autism. In-person, video, telephone and Walk & Talk outdoor therapy. Free 20-minute consultation call.';
@@ -10,13 +12,8 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
 
   <section class="hero">
     <!-- Calm image placeholder: illustrated hills in the site palette.
-         To use a real photo, replace this <svg> with <img class="hero__bg" src="/images/hero.jpg" alt="" /> -->
-    <svg class="hero__bg" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-      <circle class="hero__sun" cx="720" cy="300" r="230" />
-      <path class="hero__hill hero__hill--far" d="M0 470 C 200 400 380 430 560 455 S 900 380 1120 420 S 1340 440 1440 410 V700 H0Z" />
-      <path class="hero__hill hero__hill--mid" d="M0 540 C 180 500 330 560 540 530 S 860 480 1060 525 S 1320 560 1440 510 V700 H0Z" />
-      <path class="hero__hill hero__hill--near" d="M0 620 C 220 580 420 640 660 610 S 1020 590 1200 625 S 1380 630 1440 605 V700 H0Z" />
-    </svg>
+         To use a real photo, replace <Hills /> with <img class="hero__bg" src="/images/hero.jpg" alt="" /> -->
+    <Hills tone="sage" sun />
     <div class="container hero__inner">
       <span class="hero__logo"><Monogram size={132} /></span>
       <p class="hero__name" aria-label="Emily Hipkiss Counselling &amp; Therapy">
@@ -30,7 +27,7 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   </section>
 
   <!-- Types the name out once. Without JS, or with reduced motion, the full name simply shows. -->
-  <script is:inline>
+  <script is:inline data-astro-rerun>
     (() => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const typed = document.querySelector('.hero__typed');
@@ -52,13 +49,11 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   </script>
 
   <!-- Credentials strip -->
-  <div class="container creds" aria-label="Credentials">
-    <a class="creds__badge" href="https://www.bacp.co.uk" rel="noopener">
-      <img src="/images/bacp-registered-member-407026.png" alt="BACP Registered Member 407026" width="820" height="366" />
-    </a>
-    <span class="creds__item">MA Integrative Counselling</span>
-    <span class="creds__item">BSc Psychology</span>
-  </div>
+  <ul class="container creds" aria-label="Credentials">
+    <li><a class="creds__badge" href="https://www.bacp.co.uk" rel="noopener"><img src="/images/bacp-registered-member-407026.png" alt="BACP Registered Member 407026" width="820" height="366" /></a></li>
+    <li class="creds__item">MA Integrative Counselling</li>
+    <li class="creds__item">BSc Psychology</li>
+  </ul>
 
   <section class="section intro">
     <div class="container intro__inner">
@@ -74,23 +69,20 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   </section>
 
   <section class="section section--stone">
-    <div class="container grid grid--3">
-      <div class="panel">
-        <h3>Supporting neurodivergent clients</h3>
+    <div class="container home-cards detail-grid">
+      <DetailCard title="Supporting neurodivergent clients">
         <p>I support many clients with ADHD, autism, and other neurodevelopmental conditions by drawing on professional experience, training, and lived experience.</p>
-        <a href="/about#neurodivergent">Read more about my approach</a>
-      </div>
-      <div class="panel">
-        <h3>Walk &amp; Talk</h3>
+        <p class="detail__foot"><a href="/about#neurodivergent">Read more about my approach</a></p>
+      </DetailCard>
+      <DetailCard title="Walk &amp; Talk">
         <p>Walk &amp; Talk brings therapy to the great outdoors. We know from years of scientific research that spending time outdoors supports both our mental and physical health.</p>
-        <a href="/outdoor-therapy">About Walk &amp; Talk</a>
-      </div>
-      <div class="panel">
-        <h3>What to expect</h3>
+        <p class="detail__foot"><a href="/outdoor-therapy">About Walk &amp; Talk</a></p>
+      </DetailCard>
+      <DetailCard title="What to expect">
         <!-- First two sentences are Emily's; the third is placeholder copy -->
         <p>Starting therapy can feel like a big step. You don't need to have it all figured out before we begin. We'll start with a free 20-minute consultation call by phone or video.</p>
-        <a href="/contact">Get in touch</a>
-      </div>
+        <p class="detail__foot"><a href="/contact">Get in touch</a></p>
+      </DetailCard>
     </div>
   </section>
 
@@ -105,6 +97,7 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   )}
 
   <section class="section section--sage">
+    <Hills tone="cream" soft />
     <div class="container invite">
       <!-- placeholder copy -->
       <p class="invite__text">If you're not sure whether therapy is right for you, you're welcome to get in touch and ask.</p>
@@ -117,10 +110,6 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
 <style>
   .hero { position: relative; overflow: hidden; background: linear-gradient(var(--sage-tint), var(--cream)); min-height: min(70vh, 40rem); display: grid; align-items: center; margin: var(--space-2) var(--space-2) 0; border-radius: var(--radius-lg); }
   .hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-  .hero__sun { fill: var(--cream); opacity: 0.7; }
-  .hero__hill--far { fill: var(--sage); opacity: 0.3; }
-  .hero__hill--mid { fill: var(--sage); opacity: 0.55; }
-  .hero__hill--near { fill: var(--sage-deep); opacity: 0.45; }
   .hero__inner { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding-block: var(--space-5); }
   .hero__logo { display: block; line-height: 0; background: var(--cream); border-radius: 50%; }
   .hero__name { font-family: var(--font-heading); font-size: clamp(1.5rem, 3.6vw, 2.25rem); line-height: 1.25; margin: var(--space-3) 0 0; max-width: none; text-wrap: balance; }
@@ -135,10 +124,13 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
     .hero__inner { padding-block: var(--space-4); }
   }
 
-  .creds { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-2) var(--space-4); padding-top: var(--space-4); font-size: 1rem; color: var(--bark-soft); }
+  /* Badge and two credentials, three equal columns evenly spaced under the hero */
+  .creds { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: var(--space-3); max-width: 56rem; margin: var(--space-4) auto 0; padding: 0; }
+  .creds li { display: flex; justify-content: center; text-align: center; }
   .creds__badge { display: block; width: 7rem; line-height: 0; }
   .creds__badge img { border-radius: 0; }
-  .creds__item + .creds__item::before { content: '·'; margin-right: var(--space-4); color: var(--sage); }
+  .creds__item { font-size: 1rem; font-weight: 600; color: var(--bark-soft); }
+  @media (max-width: 760px) { .creds { grid-template-columns: 1fr; gap: var(--space-2); } }
 
   .intro { padding-block: var(--space-4); }
   .intro__inner { display: flex; align-items: center; justify-content: center; gap: var(--space-4); }
@@ -153,8 +145,11 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
     .intro__photo { width: 10rem; }
   }
 
-  .panel { display: flex; flex-direction: column; }
-  .panel a { margin-top: auto; padding-top: var(--space-1); font-weight: 600; }
+  .home-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto 1fr; gap: 28px; align-items: stretch; }
+  @media (max-width: 900px) { .home-cards { grid-template-columns: 1fr; gap: 20px; } }
+  .home-cards :global(.detail__body p) { font-size: 1rem; margin: 0; }
+  .home-cards :global(.detail__foot a) { font-weight: 600; color: var(--bark); text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--sage-deep); }
+  .home-cards :global(.detail__foot a:hover) { color: var(--sage-deep); }
 
   .invite { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); text-align: center; }
   .invite__text { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.3; max-width: 32ch; margin: 0; text-wrap: balance; }

@@ -36,7 +36,7 @@ What she has sent so far is in `CONTENT.md` (her words verbatim).
 ## Blog
 - [ ] First batch of posts (Markdown or Word is fine; Seam converts). Example titles she gave are in `CONTENT.md`
 - [ ] Short author bio for post pages
-- [ ] Blog page title and intro line
+- [x] Blog page title and intro line ("Blogs from Emily")
 
 ## Privacy
 - [ ] Confirm whether analytics will be added at launch

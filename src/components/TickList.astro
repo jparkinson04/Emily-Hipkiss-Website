@@ -1,0 +1,79 @@
+---
+/* "May be for you if…" as a tick-anything list. Nothing is stored or sent; it's a gentle self-check.
+   The closing line and button are always shown; without JS the buttons are simply inert. */
+const items = [
+  'You love getting outside',
+  'You want a break from screens',
+  "You're feeling isolated or disconnected",
+  'You want to be more active',
+  'You find it easier to speak freely side-by-side',
+];
+---
+<div class="ticks">
+  <div class="ticks__intro">
+    <h2>Walk &amp; Talk therapy may be for you if…</h2>
+    <!-- Seam line, not Emily's -->
+    <p class="ticks__hint">Tick any that sound like you.</p>
+  </div>
+  <div class="ticks__list">
+    {items.map(item => (
+      <button type="button" class="tick" aria-pressed="false">
+        <span class="tick__circle" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7" /></svg>
+        </span>
+        <span>{item}</span>
+      </button>
+    ))}
+    <div class="ticks__reply">
+      <!-- Seam line, not Emily's -->
+      <p>If that sounds like you, Walk &amp; Talk might be worth a try.</p>
+      <a class="btn" href="/contact">Get in touch</a>
+    </div>
+  </div>
+</div>
+
+<script is:inline data-astro-rerun>
+  (() => {
+    document.documentElement.classList.add('js');
+    const root = document.querySelector('.ticks');
+    if (!root) return;
+    root.querySelectorAll('.tick').forEach(b => b.addEventListener('click', () => {
+      b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'));
+    }));
+  })();
+</script>
+
+<style>
+  .ticks { display: flex; flex-wrap: wrap; gap: 40px; }
+  .ticks__intro { flex: 0 1 380px; }
+  .ticks__intro h2 { font-size: 34px; line-height: 1.1; margin-bottom: var(--space-2); }
+  .ticks__hint { color: var(--muted); margin: 0; }
+  .ticks__list { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+
+  .tick {
+    display: flex; align-items: center; gap: 18px; width: 100%; min-height: 64px; text-align: left;
+    font-family: var(--font-heading); font-size: 24px; line-height: 1.2; color: var(--bark);
+    background: var(--stone-light); border: 1.5px solid transparent; border-radius: var(--radius-md);
+    padding: 20px 24px; cursor: pointer;
+    transition: background .25s, color .25s, border-color .25s;
+  }
+  .tick:hover { border-color: var(--sage); }
+  .tick__circle {
+    flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--sage-deep); background: var(--cream);
+    display: grid; place-items: center; transition: border-color .25s;
+  }
+  .tick__circle svg { width: 18px; height: 18px; fill: none; stroke: var(--cream); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transform: scale(.6); transition: opacity .25s, transform .25s cubic-bezier(.2,.9,.3,1.4); }
+  .tick[aria-pressed="true"] { background: var(--bark-soft); color: var(--cream); }
+  .tick[aria-pressed="true"] .tick__circle { border-color: var(--cream); background: transparent; }
+  .tick[aria-pressed="true"] .tick__circle svg { opacity: 1; transform: scale(1); }
+
+  .ticks__reply { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 12px; }
+  .ticks__reply p { font-family: var(--font-heading); font-style: italic; font-size: 22px; margin: 0; max-width: none; }
+
+  @media (max-width: 760px) {
+    .ticks { gap: 24px; }
+    .ticks__intro { flex-basis: 100%; }
+    .ticks__intro h2 { font-size: 28px; }
+    .tick { font-size: 20px; }
+  }
+</style>
