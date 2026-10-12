@@ -1,0 +1,161 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import Monogram from '../components/Monogram.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog', p => !p.data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 2);
+const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract specialising in ADHD and autism. In-person, video, telephone and Walk & Talk outdoor therapy. Free 20-minute consultation call.';
+---
+<Base title="Emily Hipkiss Counselling & Therapy" description={description}>
+
+  <section class="hero">
+    <!-- Calm image placeholder: illustrated hills in the site palette.
+         To use a real photo, replace this <svg> with <img class="hero__bg" src="/images/hero.jpg" alt="" /> -->
+    <svg class="hero__bg" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <circle class="hero__sun" cx="720" cy="300" r="230" />
+      <path class="hero__hill hero__hill--far" d="M0 470 C 200 400 380 430 560 455 S 900 380 1120 420 S 1340 440 1440 410 V700 H0Z" />
+      <path class="hero__hill hero__hill--mid" d="M0 540 C 180 500 330 560 540 530 S 860 480 1060 525 S 1320 560 1440 510 V700 H0Z" />
+      <path class="hero__hill hero__hill--near" d="M0 620 C 220 580 420 640 660 610 S 1020 590 1200 625 S 1380 630 1440 605 V700 H0Z" />
+    </svg>
+    <div class="container hero__inner">
+      <span class="hero__logo"><Monogram size={132} /></span>
+      <p class="hero__name" aria-label="Emily Hipkiss Counselling &amp; Therapy">
+        <span aria-hidden="true"><span class="hero__typed">Emily Hipkiss Counselling &amp; Therapy</span><span class="hero__untyped"></span></span>
+      </p>
+      <div class="btn-row hero__actions">
+        <a class="btn" href="/contact">Get in touch</a>
+        <a class="btn btn--ghost" href="/about">How I work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Types the name out once. Without JS, or with reduced motion, the full name simply shows. -->
+  <script is:inline>
+    (() => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const typed = document.querySelector('.hero__typed');
+      const untyped = document.querySelector('.hero__untyped');
+      const text = typed.textContent;
+      let i = 0;
+      typed.textContent = '';
+      untyped.textContent = text;
+      typed.classList.add('is-typing');
+      const tick = () => {
+        i += 1;
+        typed.textContent = text.slice(0, i);
+        untyped.textContent = text.slice(i);
+        if (i < text.length) setTimeout(tick, 70);
+        else setTimeout(() => typed.classList.remove('is-typing'), 1600);
+      };
+      setTimeout(tick, 600);
+    })();
+  </script>
+
+  <!-- Credentials strip -->
+  <div class="container creds" aria-label="Credentials">
+    <a class="creds__badge" href="https://www.bacp.co.uk" rel="noopener">
+      <img src="/images/bacp-registered-member-407026.png" alt="BACP Registered Member 407026" width="820" height="366" />
+    </a>
+    <span class="creds__item">MA Integrative Counselling</span>
+    <span class="creds__item">BSc Psychology</span>
+  </div>
+
+  <section class="section intro">
+    <div class="container intro__inner">
+      <!-- Portrait placeholder: replace this div with <img class="intro__photo" src="/images/emily.jpg" alt="Emily Hipkiss" /> -->
+      <div class="intro__photo intro__photo--placeholder" role="img" aria-label="Photo of Emily Hipkiss (to come)"><span aria-hidden="true">Photo of Emily</span></div>
+      <div class="intro__text">
+      <p class="eyebrow">BACP Registered Psychotherapist</p>
+      <h1>Therapy that meets you where you are</h1>
+      <p class="lede">You deserve a space where you can feel heard, understood, and accepted just as you are.</p>
+      <p class="intro__body">I'm Emily, an integrative counsellor and psychotherapist. I offer a warm and collaborative approach to therapy, helping you make sense of your experiences, develop a deeper understanding of yourself, and find ways forward that work for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--stone">
+    <div class="container grid grid--3">
+      <div class="panel">
+        <h3>Supporting neurodivergent clients</h3>
+        <p>I support many clients with ADHD, autism, and other neurodevelopmental conditions by drawing on professional experience, training, and lived experience.</p>
+        <a href="/about#neurodivergent">Read more about my approach</a>
+      </div>
+      <div class="panel">
+        <h3>Walk &amp; Talk</h3>
+        <p>Walk &amp; Talk brings therapy to the great outdoors. We know from years of scientific research that spending time outdoors supports both our mental and physical health.</p>
+        <a href="/outdoor-therapy">About Walk &amp; Talk</a>
+      </div>
+      <div class="panel">
+        <h3>What to expect</h3>
+        <!-- First two sentences are Emily's; the third is placeholder copy -->
+        <p>Starting therapy can feel like a big step. You don't need to have it all figured out before we begin. We'll start with a free 20-minute consultation call by phone or video.</p>
+        <a href="/contact">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">From the blog</p>
+        <h2>Recent writing</h2>
+        <div class="grid grid--2">{posts.map(p => <PostCard title={p.data.title} description={p.data.description} href={`/blog/${p.id}`} date={p.data.date} image={p.data.image} />)}</div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section--sage">
+    <div class="container invite">
+      <!-- placeholder copy -->
+      <p class="invite__text">If you're not sure whether therapy is right for you, you're welcome to get in touch and ask.</p>
+      <a class="btn btn--cream" href="/contact">Get in touch</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .hero { position: relative; overflow: hidden; background: linear-gradient(var(--sage-tint), var(--cream)); min-height: min(70vh, 40rem); display: grid; align-items: center; margin: var(--space-2) var(--space-2) 0; border-radius: var(--radius-lg); }
+  .hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+  .hero__sun { fill: var(--cream); opacity: 0.7; }
+  .hero__hill--far { fill: var(--sage); opacity: 0.3; }
+  .hero__hill--mid { fill: var(--sage); opacity: 0.55; }
+  .hero__hill--near { fill: var(--sage-deep); opacity: 0.45; }
+  .hero__inner { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding-block: var(--space-5); }
+  .hero__logo { display: block; line-height: 0; background: var(--cream); border-radius: 50%; }
+  .hero__name { font-family: var(--font-heading); font-size: clamp(1.5rem, 3.6vw, 2.25rem); line-height: 1.25; margin: var(--space-3) 0 0; max-width: none; text-wrap: balance; }
+  .hero__untyped { visibility: hidden; }
+  .hero__typed.is-typing { border-right: 1.5px solid var(--sage-deep); padding-right: 2px; animation: caret 0.9s steps(1) infinite; }
+  @keyframes caret { 50% { border-right-color: transparent; } }
+  .hero__actions { justify-content: center; }
+  .hero__actions .btn--ghost { background: var(--cream); }
+  .hero__actions .btn--ghost:hover { background: var(--sage-tint); }
+  @media (max-width: 760px) {
+    .hero { min-height: 0; }
+    .hero__inner { padding-block: var(--space-4); }
+  }
+
+  .creds { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-2) var(--space-4); padding-top: var(--space-4); font-size: 1rem; color: var(--bark-soft); }
+  .creds__badge { display: block; width: 7rem; line-height: 0; }
+  .creds__badge img { border-radius: 0; }
+  .creds__item + .creds__item::before { content: '·'; margin-right: var(--space-4); color: var(--sage); }
+
+  .intro { padding-block: var(--space-4); }
+  .intro__inner { display: flex; align-items: center; justify-content: center; gap: var(--space-4); }
+  .intro__photo { flex: none; width: 13rem; aspect-ratio: 1; border-radius: 50%; object-fit: cover; border: 1px solid var(--sage); }
+  .intro__photo--placeholder { display: grid; place-items: center; background: var(--sage-tint); color: var(--bark-soft); font-size: 0.9375rem; }
+  .intro__text { max-width: 38rem; }
+  .intro h1 { font-size: clamp(1.875rem, 3.4vw, 2.5rem); margin-bottom: var(--space-2); text-wrap: balance; }
+  .intro .lede { font-size: 1.25rem; margin-bottom: var(--space-2); }
+  .intro__body { margin-bottom: 0; }
+  @media (max-width: 760px) {
+    .intro__inner { flex-direction: column; text-align: center; gap: var(--space-3); }
+    .intro__photo { width: 10rem; }
+  }
+
+  .panel { display: flex; flex-direction: column; }
+  .panel a { margin-top: auto; padding-top: var(--space-1); font-weight: 600; }
+
+  .invite { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); text-align: center; }
+  .invite__text { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.3; max-width: 32ch; margin: 0; text-wrap: balance; }
+</style>

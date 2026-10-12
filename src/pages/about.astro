@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import Credentials from '../components/Credentials.astro';
+import Therapies from '../components/Therapies.astro';
+import Fees from '../components/Fees.astro';
+// placeholder copy (built from Emily's About wording; confirm with her)
+const description = 'Emily Hipkiss is an integrative counsellor and psychotherapist in Pontefract offering a warm, collaborative, relational approach, with a specialism in supporting neurodivergent adults.';
+---
+<Base title="About" description={description}>
+  <section class="section">
+    <div class="container about-hero">
+      <div class="placeholder-img about-hero__photo">Portrait photo</div>
+      <div class="prose">
+        <p class="eyebrow">About</p>
+        <h1>Therapy that meets you where you are</h1>
+        <p class="lede">You deserve a space where you can feel heard, understood, and accepted just as you are.</p>
+        <p>I'm Emily, an integrative counsellor and psychotherapist. I offer a warm and collaborative approach to therapy, helping you make sense of your experiences, develop a deeper understanding of yourself, and find ways forward that work for you.</p>
+        <p>My approach to therapy is relational, which means that the working relationship we build is at the heart of our work together. Therapy works best when you feel safe enough to be open, honest, and explore at your own pace.</p>
+        <p>I pride myself on developing an accessible and inclusive practice where you can be exactly who you are without fear of judgment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container"><div class="prose">
+      <h2>My experience and areas of interest</h2>
+      <p>Having worked across a range of settings, I have experience of supporting clients with a wide range of challenges. I've worked in educational and community settings, domestic abuse services, and bereavement support settings across Yorkshire. These experiences have taught me the importance of looking beyond symptoms, understanding the individual person, their life experiences, and the wider circumstances and systems affecting their wellbeing.</p>
+      <p>Today, I work with adults in my private practice. People often come to therapy with me for support with anxiety, low mood, trauma, stress, grief and loss, relationship difficulties, chronic illness and disability, and other significant life changes that can affect our sense of identity and wellbeing.</p>
+    </div></div>
+  </section>
+
+  <section class="section section--sage" id="neurodivergent">
+    <div class="container"><div class="prose">
+      <h2>Supporting neurodivergent clients</h2>
+      <p>This is an area of work I am hugely passionate about. I support many clients with ADHD, autism, and other neurodevelopmental conditions by drawing on professional experience, training, and lived experience.</p>
+      <p>I understand that life's challenges can sometimes prompt us to wonder whether we're neurodivergent later in life. I specialise in supporting adults who are trying to understand themselves after years of feeling a bit different.</p>
+      <p>It can be life-changing to get to know yourself and your needs, rather than trying to squeeze yourself into a way of living that doesn't fit. Together, we can explore how your brain works, what you need to feel supported, and what might make life more manageable for you. In therapy, this often looks like:</p>
+      <ul>
+        <li>Making sense of past experiences through a neurodivergent lens</li>
+        <li>Exploring how ADHD and/or autism affects you as an individual</li>
+        <li>Developing self-compassion and self-care</li>
+        <li>Finding practical structures and strategies that help you manage your life</li>
+        <li>Recognising and recovering from neurodivergent burnout</li>
+        <li>How can you work <em>with</em> your brain rather than against it</li>
+      </ul>
+      <p>There is no one-size-fits-all approach to working with neurodivergence. I will always take your specific needs, preferences, and circumstances into account during our work together.</p>
+      <p>I recognise that our experiences with neurodiversity and how we access support are impacted by intersections with factors such as race, gender, sexuality, disability and other socioeconomic circumstances. I aim to always approach our work with curiosity, and an awareness of the systems we navigate.</p>
+    </div></div>
+  </section>
+
+  <section class="section">
+    <div class="container"><div class="prose">
+      <h2>What can you expect from therapy with me?</h2>
+      <p>Starting therapy can feel like a big step. You might be nervous about what to say or where to start. You might feel unsure whether your difficulties are significant enough to bring to therapy, or worried about being judged. I want to reassure you that you don't need to have it all figured out before we begin.</p>
+      <p>Our first session is an opportunity for us to get to know each other and talk about what has brought you to therapy. We'll also discuss how we might work together, and whether there is anything that could make sessions more accessible or comfortable for you. You don't need to arrive with a clear agenda or goal for therapy – we can work at your pace to explore this together.</p>
+      <p>You can expect a non-judgemental space where your emotions are taken seriously and your individuality is respected. You can tell me when something isn't working for you, ask questions about the process, or let me know if you'd like us to approach something in a different way.</p>
+      <p>Therapy needs to fit into your life. I can offer in-person or online sessions, weekly or fortnightly. I'm always happy to discuss adjustments to the way we work.</p>
+      <p>I believe good therapy is about more than simply being listened to. It's about two humans working together, bringing your self-knowledge and my professional experience into the space.</p>
+      <p>You don't need to feel like you're performing or doing therapy 'right' – there's room for difficult things, messy things, celebrating wins, and humour when it feels right. My hope is that our work together helps you to understand yourself with greater compassion, feel more confident in meeting your needs, and find ways of living that feel authentic to you.</p>
+      <p class="about-closing"><em>If you'd like to find out more about working together, please get in touch.</em></p>
+      <a class="btn" href="/contact">Get in touch</a>
+    </div></div>
+  </section>
+
+  <section class="section section--stone">
+    <div class="container">
+      <div class="grid grid--2 about-lower">
+        <Credentials />
+        <Fees />
+      </div>
+      <div class="about-therapies">
+        <Therapies />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-hero { display: grid; gap: var(--space-4); align-items: start; }
+  @media (min-width: 761px) { .about-hero { grid-template-columns: 2fr 3fr; gap: var(--space-5); } }
+  .about-hero__photo { max-width: 24rem; }
+  .about-hero .prose { max-width: var(--measure); }
+  .prose ul { max-width: var(--measure); padding-left: 1.2em; margin: 0 0 var(--space-2); }
+  .prose li { margin-bottom: 0.4em; }
+  .about-closing { font-family: var(--font-heading); font-size: 1.375rem; margin-top: var(--space-3); }
+  .about-lower { gap: var(--space-5); }
+  .about-therapies { margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--sage); }
+</style>

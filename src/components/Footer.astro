@@ -1,0 +1,36 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <p class="site-footer__name">Emily Hipkiss BSc MA</p>
+      <p>BACP Registered Psychotherapist<br />Registered member (MBACP) 407026</p>
+      <a class="site-footer__badge" href="https://www.bacp.co.uk" rel="noopener">
+        <img src="/images/bacp-registered-member-407026.png" alt="BACP Registered Member 407026" width="820" height="366" loading="lazy" />
+      </a>
+    </div>
+    <div>
+      <p><a href="mailto:emilyhipkisscounselling@outlook.com">emilyhipkisscounselling@outlook.com</a><br />
+      <a href="tel:+447712163270">07712 163270</a></p>
+      <p>Working days: Monday to Thursday</p>
+    </div>
+    <div>
+      <p><a href="/privacy">Privacy notice</a></p>
+      <p class="site-footer__small">&copy; {year} Emily Hipkiss. Site by <a href="https://seamdigital.co.uk">Seam Digital Studio</a>.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--stone-light); border-top: 4px solid var(--sage); border-radius: var(--radius-lg) var(--radius-lg) 0 0; padding-block: var(--space-5) var(--space-4); font-size: 1rem; }
+  .site-footer__grid { display: grid; gap: var(--space-3) var(--space-4); }
+  @media (min-width: 761px) { .site-footer__grid { grid-template-columns: repeat(3, 1fr); } }
+  .site-footer__name { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: var(--space-1); }
+  /* --sage-deep and --muted both fall short of 4.5:1 on --stone-light, so the footer uses the browns. */
+  .site-footer a { color: var(--bark); overflow-wrap: anywhere; }
+  .site-footer a:hover { color: var(--sage-deep); }
+  .site-footer__small { color: var(--bark-soft); font-size: 0.9375rem; }
+  .site-footer__badge { display: block; width: 8.5rem; line-height: 0; }
+  .site-footer__badge img { width: 100%; height: auto; border-radius: 0; }
+</style>

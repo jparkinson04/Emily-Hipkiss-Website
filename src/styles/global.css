@@ -1,0 +1,124 @@
+@import '@fontsource-variable/playfair-display/wght.css';
+@import '@fontsource-variable/playfair-display/wght-italic.css';
+@import '@fontsource-variable/source-sans-3/wght.css';
+
+/* Design tokens — the only place colours, type and spacing are defined. */
+:root {
+  /* Sage & stone, with warm brown in place of the dark green */
+  --cream: #f3f1ea;
+  --stone: #d9d3c0;
+  --stone-light: #e8e4d6;
+  --sage: #9aa88f;
+  --sage-deep: #5f7360;
+  --bark: #4e3524;        /* headings and body text; a clear warm brown, never black */
+  --bark-soft: #5e4230;   /* logo, rules, secondary text */
+  --muted: #6f655d;
+  --hairline: color-mix(in srgb, var(--bark) 8%, transparent);   /* header and footer rules */
+  --sage-tint: color-mix(in srgb, var(--sage) 28%, var(--cream)); /* soft image placeholders */
+
+  --font-heading: 'Playfair Display Variable', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans 3 Variable', 'Helvetica Neue', Arial, sans-serif;
+
+  --text: 1.125rem;       /* 18px body */
+  --measure: 65ch;
+  --container: 72rem;
+  --radius: 1.25rem;                        /* cards, panels, images */
+  --radius-sm: 0.75rem;                     /* form fields */
+  --radius-lg: clamp(1.5rem, 4vw, 2.5rem);  /* large bands: hero, coloured sections, footer */
+  --radius-pill: 999px;                     /* buttons */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--bark);
+  font-family: var(--font-body);
+  font-size: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  /* Footer always reaches the bottom of the screen on short pages */
+  min-height: 100dvh; display: flex; flex-direction: column;
+}
+main { flex: 1; display: flex; flex-direction: column; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--bark);
+  margin: 0 0 var(--space-2);
+}
+h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+h3 { font-size: 1.375rem; }
+h1 em, h2 em { font-style: italic; color: var(--sage-deep); }
+p { margin: 0 0 var(--space-2); max-width: var(--measure); }
+a { color: var(--sage-deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--bark); }
+img { max-width: 100%; height: auto; display: block; border-radius: var(--radius); }
+
+:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--bark); color: var(--cream); padding: var(--space-1) var(--space-2);
+}
+.skip-link:focus { left: var(--space-2); z-index: 100; }
+
+.container { width: min(100% - 2 * var(--space-3), var(--container)); margin-inline: auto; }
+.section { padding-block: var(--space-5); }
+.section--tight { padding-block: var(--space-4); }
+/* Cream text needs --sage-deep behind it; --sage is too light (2.2:1). */
+.section--sage { background: var(--sage-deep); color: var(--cream); margin-block: var(--space-2); }
+/* Coloured bands sit slightly inset with soft corners so the page flows rather than stacking boxes */
+.section--sage, .section--stone { margin-inline: var(--space-2); border-radius: var(--radius-lg); }
+.section--sage h2, .section--sage h3, .section--sage p, .section--sage a { color: var(--cream); }
+.section--sage :focus-visible { outline-color: var(--cream); }
+@media (max-width: 760px) { .section { padding-block: var(--space-4); } }
+.section--stone { background: var(--stone-light); }
+
+.eyebrow {
+  font-size: 0.8125rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--sage-deep); margin-bottom: var(--space-1);
+}
+/* --sage-deep is under 4.5:1 on --stone-light panels */
+.panel .eyebrow { color: var(--bark-soft); }
+.lede { font-size: 1.375rem; line-height: 1.5; }
+
+.grid { display: grid; gap: var(--space-3); }
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+
+.panel { background: var(--stone-light); border-radius: var(--radius); padding: var(--space-4) var(--space-3); }
+.section--stone .panel { background: var(--cream); border: 1px solid var(--sage); }
+.panel h3 { margin-top: 0; }
+
+.btn {
+  display: inline-block; padding: 0.8em 1.75em; border-radius: var(--radius-pill);
+  font-weight: 600; text-decoration: none; border: 2px solid var(--bark-soft);
+  background: var(--bark-soft); color: var(--cream); transition: background .2s, color .2s;
+}
+.btn:hover { background: var(--bark); border-color: var(--bark); color: var(--cream); }
+.btn--ghost { background: transparent; color: var(--bark); }
+.btn--ghost:hover { background: var(--sage-tint); color: var(--bark); }
+.btn--cream { background: transparent; border-color: var(--cream); color: var(--cream); }
+.btn--cream:hover { background: var(--cream); border-color: var(--cream); color: var(--bark); }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+
+.placeholder-img {
+  aspect-ratio: 4 / 5; background: var(--sage-tint); border-radius: var(--radius);
+  display: grid; place-items: center; color: var(--bark-soft); font-size: 0.9rem; text-align: center; padding: var(--space-2);
+}
+.placeholder-img--wide { aspect-ratio: 16 / 9; }
+
+.prose { max-width: var(--measure); }
+.prose h2 { margin-top: var(--space-4); }
+.prose img { margin-block: var(--space-3); }

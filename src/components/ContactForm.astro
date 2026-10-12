@@ -1,0 +1,56 @@
+---
+/* Web3Forms: create a free access key at web3forms.com with Emily's email as the recipient. */
+const key = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
+---
+<form class="form" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value={key} />
+  <input type="hidden" name="subject" value="New enquiry from your website" />
+  <input type="hidden" name="redirect" value="/contact/thank-you" />
+  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+  <div class="field">
+    <label for="name">Your name</label>
+    <input id="name" name="name" type="text" required autocomplete="name" />
+  </div>
+  <div class="form__row">
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required autocomplete="email" />
+    </div>
+    <div class="field">
+      <label for="phone">Phone <span class="optional">(optional)</span></label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" />
+    </div>
+  </div>
+  <div class="field">
+    <label for="message">Your message</label>
+    <textarea id="message" name="message" rows="3" required aria-describedby="message-hint" placeholder="Share as much or as little as you like."></textarea>
+    <span id="message-hint" class="visually-hidden">Share as much or as little as you like.</span>
+  </div>
+  <div class="form__foot">
+    <button class="btn" type="submit">Send message</button>
+    <p class="form__note">Your details are only used to reply to you. See the <a href="/privacy">privacy notice</a>.</p>
+  </div>
+</form>
+
+<style>
+  .form { display: grid; gap: var(--space-2); background: var(--sage-tint); border-radius: var(--radius); padding: var(--space-3); }
+  .form__row { display: grid; gap: var(--space-2); }
+  @media (min-width: 480px) { .form__row { grid-template-columns: 1fr 1fr; } }
+  .field { display: grid; gap: 0.3rem; }
+  label { font-size: 1rem; font-weight: 600; }
+  .optional { font-weight: 400; color: var(--bark-soft); }
+  input, textarea {
+    font: inherit; padding: 0.6em 0.9em; border: 1px solid var(--stone); border-radius: var(--radius-sm);
+    background: var(--cream); color: var(--bark); width: 100%;
+  }
+  textarea { resize: vertical; min-height: 6.5rem; }
+  ::placeholder { color: var(--muted); opacity: 1; }
+  input:focus-visible, textarea:focus-visible { border-color: var(--sage-deep); outline: 3px solid var(--sage-deep); outline-offset: 1px; }
+  .hidden { display: none; }
+  .form__foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin-top: var(--space-1); }
+  .form__foot .btn { cursor: pointer; font-family: inherit; font-size: 1rem; }
+  .form__note { flex: 1 1 14rem; font-size: 0.9375rem; line-height: 1.4; color: var(--bark-soft); margin: 0; }
+  .form__note a { color: var(--bark); }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+</style>

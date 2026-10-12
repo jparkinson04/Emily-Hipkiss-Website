@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import Fees from '../components/Fees.astro';
+const description = 'Walk & Talk outdoor therapy with Emily Hipkiss, BACP registered counsellor in Pontefract. Therapy in nature, at your pace, with a free 20-minute consultation call.';
+---
+<Base title="Walk & Talk" description={description}>
+  <section class="section wt-hero">
+    <div class="container wt-hero__grid">
+      <div>
+        <p class="eyebrow">Outdoor therapy</p>
+        <h1>Walk &amp; Talk</h1>
+        <p class="lede">Walk &amp; Talk brings therapy to the great outdoors.</p>
+      </div>
+      <img class="wt-hero__badge" src="/images/walk-and-talk-trained-badge.png" alt="Walk & Talk Therapy Trained" width="500" height="500" />
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="placeholder-img placeholder-img--wide">Outdoor photo (Emily is taking one)</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container"><div class="prose">
+      <p>We know from years of scientific research that spending time outdoors supports both our mental and physical health. Whether this is boosting our mood, supporting nervous system regulation, or simply getting our steps in, getting out in nature can offer us so much. One study by Professor Roger Ulrich even demonstrated that patients recovered more quickly from an operation if they had a view of nature, highlighting the healing properties of nature.</p>
+      <p>Nature's therapeutic presence can support our work together by creating a sense of calm, engaging our senses, and facilitating feelings of connection with the world around us.</p>
+
+      <h2>Walk &amp; Talk therapy may be for you if…</h2>
+      <ul class="wt-list">
+        <li>You love getting outside</li>
+        <li>You want a break from screens</li>
+        <li>You're feeling isolated or disconnected</li>
+        <li>You want to be more active</li>
+        <li>You find it easier to speak freely side-by-side</li>
+      </ul>
+
+      <p>You do not have to be a seasoned hiker to engage in Walk &amp; Talk. We will always agree on a safe route, go at your pace, and make time to rest on a bench or stop and smell the flowers. All you'll need are some comfortable shoes, weather-appropriate clothing, a water bottle, and we're good to go.</p>
+      <p>If you are interested in Walk &amp; Talk therapy, please use my <a href="/contact">contact form</a> to get in touch. We will have an initial assessment session online or in office before we head outside.</p>
+    </div></div>
+  </section>
+
+  <section class="section section--stone">
+    <div class="container">
+      <Fees />
+    </div>
+  </section>
+
+  <section class="section section--sage">
+    <div class="container wt-cta">
+      <h2>Interested in Walk &amp; Talk?</h2>
+      <a class="btn btn--cream" href="/contact">Get in touch</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .wt-hero__grid { display: grid; gap: var(--space-3); align-items: center; }
+  @media (min-width: 640px) { .wt-hero__grid { grid-template-columns: 1fr auto; gap: var(--space-5); } }
+  .wt-hero__badge { width: 9rem; border-radius: 50%; }
+  .wt-hero .lede { margin-bottom: 0; }
+  .wt-list { max-width: var(--measure); padding-left: 1.2em; margin: 0 0 var(--space-3); }
+  .wt-list li { margin-bottom: 0.4em; }
+  .wt-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
+  .wt-cta h2 { margin: 0; }
+</style>

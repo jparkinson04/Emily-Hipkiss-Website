@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+// Example cards shown only while there are no published posts. Remove before launch.
+const examples = [1, 2, 3];
+const posts = (await getCollection('blog', p => !p.data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="Blog" description="[TODO: Blog description. Writing from Emily on ADHD, autism, outdoor therapy and life.]">
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Blog</p>
+      <h1>[TODO: Blog title]</h1>
+      <p class="lede">[TODO: One line on what she writes about.]</p>
+      <div class="grid grid--3 post-grid">
+        {posts.length === 0
+          ? examples.map(() => <PostCard title="Title" description="Subheading" date="Date" />)
+          : posts.map(p => <PostCard title={p.data.title} description={p.data.description} href={`/blog/${p.id}`} date={p.data.date} image={p.data.image} />)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .post-grid { margin-top: var(--space-4); }
+</style>
