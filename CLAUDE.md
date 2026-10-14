@@ -6,7 +6,7 @@ Client site built by Seam Digital Studio. Read this fully before touching anythi
 Emily Hipkiss BSc MA, BACP Registered Psychotherapist. Counsellor specialising in ADHD and autism,
 also offers outdoor "walk and talk" therapy. First website. Purpose: credibility (somewhere to send
 people who want to know who she is and how she works), plus a blog so the site stays active for search.
-Working days: Mon–Thu. Email: emilyhipkisscounselling@outlook.com. Tel: 07712 163270.
+Working days: Mon–Thu. Email: emilyhipkisscounselling@outlook.com. Her phone number is NOT shown anywhere on the site (client request, 14 Oct 2026).
 In-person in Pontefract, plus video, telephone and Walk & Talk. BACP registered member (MBACP) 407026.
 Emily's supplied content lives in `CONTENT.md` (her words verbatim); badges in `public/images/`.
 
