@@ -57,7 +57,7 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
 
   <section class="section intro">
     <div class="container intro__inner">
-      <img class="intro__photo" src="/images/emily-headshot.jpg" alt="Emily Hipkiss, smiling, holding a cup of tea" width="640" height="640" />
+      <img class="intro__photo" src="/images/emily-headshot.jpg" alt="Emily Hipkiss, smiling, holding a cup of tea" width="880" height="880" />
       <div class="intro__text">
       <p class="eyebrow">BACP Registered Psychotherapist</p>
       <h1>Therapy that meets you where you are</h1>
@@ -134,8 +134,8 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   @media (max-width: 760px) { .creds { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem 1.5rem; margin-top: var(--space-3); } .creds li:first-child { flex-basis: 100%; } .creds__badge { width: 6rem; } .creds__item { font-size: 0.9375rem; } }
 
   .intro { padding-block: var(--space-4); }
-  .intro__inner { display: flex; align-items: center; justify-content: center; gap: var(--space-4); }
-  .intro__photo { flex: none; width: 13rem; aspect-ratio: 1; border-radius: 50%; object-fit: cover; border: 1px solid var(--sage); }
+  .intro__inner { display: flex; align-items: center; justify-content: center; gap: var(--space-5); }
+  .intro__photo { flex: none; width: clamp(16rem, 28vw, 22rem); aspect-ratio: 1; border-radius: 50%; object-fit: cover; border: 6px solid var(--cream); outline: 1px solid var(--sage); }
   .intro__text { max-width: 38rem; }
   .intro h1 { font-size: clamp(1.875rem, 3.4vw, 2.5rem); margin-bottom: var(--space-2); text-wrap: balance; }
   .intro .lede { font-size: 1.25rem; margin-bottom: var(--space-2); }
@@ -143,7 +143,7 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   @media (max-width: 760px) {
     .intro { padding-block: 1.5rem 2rem; }
     .intro__inner { flex-direction: column; text-align: center; gap: var(--space-2); }
-    .intro__photo { width: 7.5rem; }
+    .intro__photo { width: 13rem; border-width: 4px; }
     .intro h1 { font-size: 1.875rem; }
     .intro .lede { font-size: 1.125rem; }
   }
