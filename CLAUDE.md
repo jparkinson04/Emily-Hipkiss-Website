@@ -32,7 +32,8 @@ Emily's supplied content lives in `CONTENT.md` (her words verbatim); badges in `
 - Content collection for blog posts at `src/content/blog/*.md`. Frontmatter schema in `src/content.config.ts`.
 - Contact form uses Web3Forms (static-friendly, sends to her inbox). Access key goes in `ContactForm.astro`
   as `PUBLIC_WEB3FORMS_KEY` env var. Honeypot field included. Do not add a backend.
-- Deploy: Vercel. Domain to be registered in Emily's name (likely emilyhipkisscounselling.co.uk).
+- Deploy: Vercel. Domain to be registered in Emily's name (she says emilyhipkiss.com). `site` in astro.config.mjs is the
+  Vercel URL until then; it drives canonical URLs, the sitemap and the link-preview image (`public/og-default.jpg`).
 - SEO: every page sets `title` and `description` via `Base.astro`. Open Graph image per page optional.
   Blog posts get article meta and a shareable preview. Sitemap via @astrojs/sitemap.
 - Accessibility: semantic headings, visible focus states, alt text on every image, form labels, skip link.
