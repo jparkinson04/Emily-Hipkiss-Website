@@ -146,8 +146,10 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   .intro__body { margin-bottom: 0; }
   @media (max-width: 760px) {
     .intro { padding-block: 1.25rem 2rem; }
-    .intro__inner { flex-direction: column; text-align: center; gap: var(--space-2); }
-    .intro__text p:not(.lede) { text-align: left; }
+    .intro__inner { flex-direction: column; align-items: stretch; gap: var(--space-3); }
+    .intro__photo { align-self: center; }
+    .intro__text { max-width: none; text-align: left; }
+    .intro h1 { text-wrap: pretty; }
     .intro__photo { width: 13rem; border-width: 4px; }
     .intro h1 { font-size: 1.875rem; }
     .intro .lede { font-size: 1.125rem; }
