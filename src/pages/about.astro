@@ -82,9 +82,9 @@ const description = 'Emily Hipkiss is an integrative counsellor and psychotherap
 
   .about-hero { position: relative; overflow: hidden; margin: var(--space-2) var(--space-2) 0; border-radius: var(--radius-lg); padding: 56px 0 72px; background: linear-gradient(var(--cream), var(--sage-tint)); }
   .about-hero__row { position: relative; z-index: 1; }
-  .about-hero__row { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
-  .about-hero__photo { flex: none; width: 260px; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover; background: var(--stone); }
-  .about-hero__text { flex: 999 1 560px; min-width: 0; max-width: 40rem; }
+  .about-hero__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-5); max-width: 64rem; }
+  .about-hero__photo { flex: none; width: clamp(16rem, 26vw, 20rem); aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover; background: var(--stone); border: 6px solid var(--cream); outline: 1px solid var(--sage); }
+  .about-hero__text { flex: 1 1 30rem; min-width: 0; max-width: 36rem; }
   .about-hero__lede { font-size: 21px; line-height: 1.5; color: var(--bark-soft); margin-bottom: var(--space-3); }
   .about-hero__text p:not(.about-hero__lede) { margin: 0 0 14px; }
   .about-hero__text p:last-child { margin-bottom: 0; }
@@ -105,8 +105,9 @@ const description = 'Emily Hipkiss is an integrative counsellor and psychotherap
   }
   @media (max-width: 700px) {
     .about-hero { margin: 0.75rem 0.75rem 0; padding: 28px 0 48px; }
-    .about-hero__row { justify-content: center; gap: 20px; }
-    .about-hero__photo { width: 150px; }
+    .about-hero__row { justify-content: center; gap: 20px; text-align: center; }
+    .about-hero__text p:not(.about-hero__lede) { text-align: left; }
+    .about-hero__photo { width: 12rem; border-width: 4px; }
     .about-hero__text h1 { font-size: 1.875rem; }
     .about-hero__lede { font-size: 1.125rem; margin-bottom: var(--space-2); }
     .about-tabs { padding: var(--space-3) 0 32px; }
