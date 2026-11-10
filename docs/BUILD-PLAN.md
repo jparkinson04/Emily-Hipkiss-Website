@@ -29,7 +29,7 @@ Run these in order. Check the dev server after each.
 ## 06 — Blog
 - `/blog` index with PostCard grid, newest first.
 - `/blog/[slug]` layout: title, date, reading time, body, "Get in touch" CTA at the end.
-- Open Graph + Twitter card meta on posts for LinkedIn sharing. Default OG image in `public/og-default.png`.
+- Open Graph + Twitter card meta on posts for LinkedIn sharing. Default OG image in `public/og-default.jpg` (logo and title left, Emily's photo right; 1200×630).
 - Keep `src/content/blog/_example.md` as the template Seam uses when Emily emails a post.
 
 ## 07 — Contact
