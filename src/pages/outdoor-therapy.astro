@@ -7,14 +7,12 @@ const description = 'Walk & Talk outdoor therapy with Emily Hipkiss, BACP regist
 <Base title="Walk & Talk" description={description}>
   <div class="wt">
 
-    <!-- Hero: same as the About hero. When Emily's outdoor photo arrives, add
-         <img class="wt-hero__photo" src="/images/walk-and-talk.jpg" alt="" /> as the first child of .wt-hero
-         and remove <Hills />. -->
     <section class="wt-hero">
       <Hills tone="sage" soft />
       <div class="container wt-hero__row">
-        <div class="wt-hero__badge">
-          <img src="/images/walk-and-talk-trained-badge.png" alt="Walk & Talk Therapy Trained" width="500" height="500" />
+        <div class="wt-hero__photo-wrap">
+          <img class="wt-hero__photo" src="/images/emily-outdoors.jpg" alt="Emily Hipkiss sitting on a bench in open countryside at golden hour" width="900" height="1125" />
+          <img class="wt-hero__badge" src="/images/walk-and-talk-trained-badge.png" alt="Walk & Talk Therapy Trained" width="500" height="500" />
         </div>
         <div class="wt-hero__text">
           <h1>Walk &amp; Talk</h1>
@@ -81,11 +79,10 @@ const description = 'Walk & Talk outdoor therapy with Emily Hipkiss, BACP regist
 
   /* Hero: mirrors .about-hero exactly */
   .wt-hero { position: relative; overflow: hidden; margin: var(--space-2) var(--space-2) 0; border-radius: var(--radius-lg); padding: 56px 0 72px; background: linear-gradient(var(--cream), var(--sage-tint)); }
-  .wt-hero__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
-  .wt-hero__photo ~ .wt-hero__row::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--cream) 0%, transparent 60%); z-index: -1; }
   .wt-hero__row { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
-  .wt-hero__badge { flex: none; width: 260px; aspect-ratio: 1 / 1; border-radius: 50%; background: var(--stone); display: grid; place-items: center; }
-  .wt-hero__badge img { width: 200px; height: auto; border-radius: 50%; }
+  .wt-hero__photo-wrap { position: relative; flex: none; width: 300px; }
+  .wt-hero__photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
+  .wt-hero__badge { position: absolute; right: -18px; bottom: -18px; width: 108px; height: auto; border-radius: 50%; background: var(--cream); padding: 4px; }
   .wt-hero__text { flex: 999 1 560px; min-width: 0; max-width: 40rem; }
   .wt-hero__lede { font-size: 21px; line-height: 1.5; color: var(--bark-soft); margin: 0; }
 
@@ -124,9 +121,9 @@ const description = 'Walk & Talk outdoor therapy with Emily Hipkiss, BACP regist
 
   @media (max-width: 760px) {
     .wt-hero { margin: 0.75rem 0.75rem 0; padding: 28px 0 44px; }
-    .wt-hero__row { justify-content: center; gap: 16px; }
-    .wt-hero__badge { width: 150px; }
-    .wt-hero__badge img { width: 116px; }
+    .wt-hero__row { justify-content: center; gap: 24px; }
+    .wt-hero__photo-wrap { width: 220px; }
+    .wt-hero__badge { width: 84px; right: -10px; bottom: -10px; }
     .wt-hero__text { text-align: center; }
     .wt-hero__lede { font-size: 1.125rem; }
     .wt-body { padding: 0.75rem 0 32px; }

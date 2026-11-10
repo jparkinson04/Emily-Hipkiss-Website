@@ -7,3 +7,7 @@ dist/
 !.env.example
 .DS_Store
 .vercel
+
+# Emily's original photo exports (processed copies live in public/images)
+/*.jpeg
+/*.jpg

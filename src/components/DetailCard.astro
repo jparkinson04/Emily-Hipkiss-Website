@@ -1,10 +1,13 @@
 ---
 /* Card in the same family as the blog cards: sage top with the title, stone body, dark sage line between. */
-interface Props { title: string }
-const { title } = Astro.props;
+interface Props { title: string; image?: string; imageAlt?: string }
+const { title, image, imageAlt = '' } = Astro.props;
 ---
 <article class="detail">
-  <div class="detail__top"><h3>{title}</h3></div>
+  <div class:list={['detail__top', { 'detail__top--image': image }]}>
+    {image && <img class="detail__img" src={image} alt={imageAlt} width="1200" height="750" loading="lazy" />}
+    <h3>{title}</h3>
+  </div>
   <div class="detail__body"><slot /></div>
 </article>
 
@@ -14,6 +17,10 @@ const { title } = Astro.props;
   :global(.detail-grid) > .detail { grid-template-rows: subgrid; grid-row: span 2; row-gap: 0; }
   .detail__top { display: flex; align-items: flex-start; min-height: 150px; padding: 36px 32px; background: var(--sage); border-bottom: 3px solid var(--sage-deep); }
   .detail__top h3 { font-size: 30px; line-height: 1.15; color: var(--cream); margin: 0; }
+  /* With a photo: image fills the band, title sits on a sage fade at the bottom */
+  .detail__top--image { position: relative; padding: 0; min-height: 0; align-items: flex-end; }
+  .detail__img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 0; display: block; }
+  .detail__top--image h3 { position: absolute; left: 0; right: 0; bottom: 0; padding: 48px 32px 22px; background: linear-gradient(to top, color-mix(in srgb, var(--sage-deep) 92%, transparent), transparent); }
   .detail__body { flex: 1; display: flex; flex-direction: column; gap: 18px; padding: 26px 32px 30px; }
 
   /* Body lists: dot bullets, no hairlines */
@@ -25,6 +32,8 @@ const { title } = Astro.props;
   .detail__body :global(.detail__foot) { margin: auto 0 0; }
   @media (max-width: 760px) {
     .detail__top { min-height: 0; padding: 18px 22px; }
+    .detail__top--image { padding: 0; }
+    .detail__top--image h3 { padding: 40px 22px 16px; }
     .detail__top h3 { font-size: 24px; }
     .detail__body { padding: 18px 22px 22px; gap: 14px; }
   }
