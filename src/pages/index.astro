@@ -120,9 +120,12 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   .hero__actions .btn--ghost:hover { background: var(--sage-tint); }
   @media (max-width: 760px) {
     .hero { min-height: 0; margin: 0.75rem 0.75rem 0; }
-    .hero__inner { padding-block: var(--space-4) 2rem; }
-    .hero__logo :global(svg) { width: 96px; height: 96px; }
-    .hero__name { margin-top: var(--space-2); }
+    .hero :global(.hills__sun) { display: none; }
+    .hero__inner { padding: 2.5rem 1.25rem 2.75rem; }
+    .hero__logo :global(svg) { width: 84px; height: 84px; }
+    .hero__name { font-size: 1.5rem; margin-top: 0.875rem; }
+    .hero__actions { flex-wrap: nowrap; gap: 0.625rem; margin-top: 1.5rem; }
+    .hero__actions .btn { padding: 0.7em 1.15em; font-size: 0.9375rem; white-space: nowrap; }
   }
 
   /* Badge and two credentials, three equal columns evenly spaced under the hero */
@@ -131,7 +134,8 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   .creds__badge { display: block; width: 7rem; line-height: 0; }
   .creds__badge img { border-radius: 0; }
   .creds__item { font-size: 1rem; font-weight: 600; color: var(--bark-soft); }
-  @media (max-width: 760px) { .creds { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem 1.5rem; margin-top: var(--space-3); } .creds li:first-child { flex-basis: 100%; } .creds__badge { width: 6rem; } .creds__item { font-size: 0.9375rem; } }
+  /* Phones: one quiet line of credentials; the BACP badge lives in the footer and on About */
+  @media (max-width: 760px) { .creds { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.25rem 0.625rem; margin-top: 1.25rem; } .creds li:first-child { display: none; } .creds__item { font-size: 0.875rem; font-weight: 600; color: var(--sage-deep); letter-spacing: .02em; } .creds__item + .creds__item::before { content: '·'; margin-right: 0.625rem; color: var(--sage); } }
 
   .intro { padding-block: var(--space-4); }
   .intro__inner { display: flex; align-items: center; justify-content: center; gap: var(--space-5); }
@@ -141,8 +145,9 @@ const description = 'Emily Hipkiss, BACP registered counsellor in Pontefract spe
   .intro .lede { font-size: 1.25rem; margin-bottom: var(--space-2); }
   .intro__body { margin-bottom: 0; }
   @media (max-width: 760px) {
-    .intro { padding-block: 1.5rem 2rem; }
+    .intro { padding-block: 1.25rem 2rem; }
     .intro__inner { flex-direction: column; text-align: center; gap: var(--space-2); }
+    .intro__text p:not(.lede) { text-align: left; }
     .intro__photo { width: 13rem; border-width: 4px; }
     .intro h1 { font-size: 1.875rem; }
     .intro .lede { font-size: 1.125rem; }
