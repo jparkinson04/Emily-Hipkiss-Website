@@ -30,8 +30,9 @@ Emily's supplied content lives in `CONTENT.md` (her words verbatim); badges in `
 ## Stack and conventions
 - Astro, plain CSS (no Tailwind), component-split architecture, single `global.css` for tokens.
 - Content collection for blog posts at `src/content/blog/*.md`. Frontmatter schema in `src/content.config.ts`.
-- Contact form uses Web3Forms (static-friendly, sends to her inbox). Access key goes in `ContactForm.astro`
-  as `PUBLIC_WEB3FORMS_KEY` env var. Honeypot field included. Do not add a backend.
+- Contact form posts to `src/pages/api/contact.ts` (server route via the Vercel adapter), which emails Emily through
+  Resend. `RESEND_API_KEY` lives in `.env` locally and in Vercel env vars; never commit it. Honeypot field included.
+  The `from` address domain must be verified in Resend. No other backend.
 - Deploy: Vercel. Domain to be registered in Emily's name (she says emilyhipkiss.com). `site` in astro.config.mjs is the
   Vercel URL until then; it drives canonical URLs, the sitemap and the link-preview image (`public/og-default.jpg`).
 - SEO: every page sets `title` and `description` via `Base.astro`. Open Graph image per page optional.

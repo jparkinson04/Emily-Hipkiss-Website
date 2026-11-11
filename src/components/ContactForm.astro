@@ -1,12 +1,6 @@
----
-/* Web3Forms: create a free access key at web3forms.com with Emily's email as the recipient. */
-const key = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
----
-<form class="form" action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value={key} />
-  <input type="hidden" name="subject" value="New enquiry from your website" />
-  <input type="hidden" name="redirect" value="/contact/thank-you" />
-  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+<form class="form" id="contact-form" novalidate>
+  <!-- Honeypot: humans never see this, bots fill it in -->
+  <input type="text" name="company" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
   <h2>Send a message</h2>
 
@@ -32,10 +26,50 @@ const key = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
     <button class="btn" type="submit">Send message</button>
     <p class="form__note">Only used to reply to you. <a href="/privacy">Privacy notice</a>.</p>
   </div>
+  <p class="form__error" id="form-error" hidden>
+    Sorry, something went wrong sending your message. You can email me directly at
+    <a href="mailto:emilyhipkisscounselling@outlook.com">emilyhipkisscounselling@outlook.com</a>.
+  </p>
   <p class="form__next">We'll start with a free 20-minute consultation call by phone or video.</p>
 </form>
 
+<div class="form form--sent" id="form-success" hidden>
+  <h2>Thank you</h2>
+  <p class="form__sent-text">Your message has been sent. I'll reply on one of my working days.</p>
+</div>
+
+<script>
+  // Runs on first load and after every client-side navigation (ClientRouter), so the form always has its handler
+  document.addEventListener("astro:page-load", () => {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const success = document.getElementById("form-success");
+    const error = document.getElementById("form-error");
+    if (!form || !success || !error) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      error.hidden = true;
+
+      const button = form.querySelector("button");
+      if (button) { button.disabled = true; button.textContent = "Sending..."; }
+
+      try {
+        const res = await fetch("/api/contact", { method: "POST", body: new FormData(form) });
+        if (!res.ok) throw new Error();
+        form.hidden = true;
+        success.hidden = false;
+        success.scrollIntoView({ block: "center", behavior: "smooth" });
+      } catch {
+        error.hidden = false;
+        if (button) { button.disabled = false; button.textContent = "Send message"; }
+      }
+    });
+  });
+</script>
+
 <style>
+.form[hidden] { display: none !important; }
   .form { display: grid; gap: 30px; max-width: 520px; margin: 0 auto; width: 100%; }
   h2 { font-size: 30px; margin: 0; }
   .field { display: grid; gap: 4px; }
@@ -53,8 +87,12 @@ const key = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
   .hidden { display: none; }
   .form__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
   .form__foot .btn { cursor: pointer; font-family: inherit; font-size: 1rem; min-height: 48px; }
+  .form__foot .btn:disabled { opacity: .6; cursor: default; }
   .form__note { flex: 1 1 12rem; font-size: 15px; color: var(--muted); margin: 0; }
   .form__note a { color: var(--bark); }
+  .form__error { font-size: 15px; color: var(--bark); margin: 0; }
+  .form__error a { color: var(--bark); }
+  .form__sent-text { font-size: 18px; color: var(--bark); margin: 0; }
   .form__next { font-size: 16px; color: var(--muted); margin: 0; padding-top: 18px; border-top: 1px solid var(--hairline); }
   @media (max-width: 900px) {
     .form { gap: 22px; }
