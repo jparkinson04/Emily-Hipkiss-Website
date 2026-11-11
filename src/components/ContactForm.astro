@@ -55,7 +55,12 @@
       if (button) { button.disabled = true; button.textContent = "Sending..."; }
 
       try {
-        const res = await fetch("/api/contact", { method: "POST", body: new FormData(form) });
+        const payload = Object.fromEntries(new FormData(form).entries());
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
         if (!res.ok) throw new Error();
         form.hidden = true;
         success.hidden = false;
